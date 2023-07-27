@@ -1,7 +1,7 @@
 # Curl Man Page Feature Request
 
 This repo is to serve as an illustration for <br/>
-a feature request in curl-www. It is a working <br/>
+a feature request in curl-www repo. It is a working <br/>
 mockup of a feature request for curl's manpage.html. <br/>
 
 The requested feature is a dropdown searchanle menu <br/>
