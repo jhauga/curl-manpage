@@ -80,9 +80,7 @@ function buttonToSide(status, onoff) {
    ( onoff == 1 || onOffButton == 1 ) &&
      onoff != "on"
     ) { mousedOver = 1; return; }
-  /*// touch event occured
-  if (onoff == "off") { searchButton.dataset.touchStatus = "on"; }
-  else { searchButton.dataset.touchStatus = "off"; }*/
+  
   // is moused over or not. exit on mouse out  
   if ( status == 1 ) { 
     mousedOver = 1;
@@ -127,27 +125,27 @@ function toggleSearchButton(showhide, onoff) {
   let manpageMenu = document.getElementsByClassName("menu")[0];  
   
   // toggle display elements
-  let showItem = showhide.nextElementSibling; // --------------------\ select option menu
-  let curData = onoff.dataset;                                     
-  if (curData.onoff == 0) { 
-    // 1.set switch, show menu, change style, change text------------\
+  let showItem = showhide.nextElementSibling;                  //----\ select option menu
+  let curData = onoff.dataset;                               //      |
+  if (curData.onoff == 0) {                                //        |
+    // 1.set switch, show menu, change style, change text-//---------|
     manpageOptionMenu.dataset.toSide = 0;                //          |
     curData.onoff = 1;                                  //           | 
     showItem.style.display = "";                       //            |
     onoff.style.background = "white";                  //            |
     onoff.style.color = "black";                       //           \|/ 
     onoff.innerHTML = onoff.innerHTML.replace("Show", "Hide"); //    .                                                              
-    // 2. set to side when menu out of view and style parrent--------|
+    // 2. set to side when menu out of view and style parrent //-----|
     onoff.className = "";                              //            |
     onoff.parentElement.className = onoff              //           \|/
     .parentElement.className.replace(" inactive", ""); //          2 .    
-    // 3. responsive margins if screen < 770 add else remove---------|
-    if (!manpageDiv.id) { manpageDiv.id = "activeManDiv"; }    //   \|/
+    // 3. responsive margins if screen < 770 add else remove //------|
+    if (!manpageDiv.id) { manpageDiv.id = "activeManDiv"; }   //    \|/
     if (!manpageMenu.id) { manpageMenu.id = "activeManMenu"; } //  3 .    
-    // Turn button on
-    onOffButton = 1;
-  } else {
-    // "..." -    -   -   -   -   -   -   -   -    -        .......1 .
+    // Turn button on                                         //
+    onOffButton = 1;                                         //
+  } else {                                                  //
+    // "..." -    -   -   -   -   -   -   -   -    -    - .........1 .
     manpageOptionMenu.dataset.toSide = 1;                //         /|\
     curData.onoff = 0;                                  //           |
     showItem.style.display = "none";                   //            |
@@ -160,7 +158,7 @@ function toggleSearchButton(showhide, onoff) {
     // "..." -    -   -   -   -   -   -   -   -    -     //........3 .
     if (manpageDiv.id) { manpageDiv.removeAttribute("id");} //      /|\
     if (manpageMenu.id) { manpageMenu.removeAttribute("id");} //     |    
-    //                                                               |
+    //                                                          //   |
     // put back to side if scrolled past 100. -----------------------/
     // Turn button off
     onOffButton = 0;
