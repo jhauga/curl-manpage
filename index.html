@@ -83,12 +83,15 @@
 </div>
 </div>
 <div class="contents">
+<!-- To top styled as button. -->
+<div id="to-top-Button" class="sideStay sideStayLeft inactive">
+  <div id="toTop" class="sideStay sideStayTopLeft toTopToSide" style="display:none" href="#">
+    <span> &uarr; </span>
+  </div>
+</div>
+<!-- Option Search Menu -->
 <div id="manpage-option-menu" class="sideStay sideStayLeft inactive" 
  data-to-side="1" data-on-side="0"> 
-<!-- To top buttion -->
-  <div id="toTop" class="sideStay sideStayTopLeft toTopToSide" style="display:none" onclick="window.scrollTo(0,0);">
-    <span> &uarr; </span>
-  </div>  
 <!-- On Off button -->
   <button class="searchButtonToSide" id="searchButton" 
    onclick="toggleSearchButton(this.nextElementSibling, this)" data-onoff="0"
@@ -100,6 +103,7 @@
       <img src="https://curl.se/logo/curl-symbol.svg" alt="curl symbol"><input id="optionSearchField" name="optionSearchField" type="search" oninput="searchOptions(this.value)">
     </div>
     <ul id="optionMenu">
+      <!-- Start option list -->
       <div id="fullOptionList" style="display:none">
         <li><a href="#">--abstract-unix-socket</a></li>
         <li><a href="#">--alt-svc</a></li>
