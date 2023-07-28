@@ -85,6 +85,10 @@
 <div class="contents">
 <div id="manpage-option-menu" class="sideStay sideStayLeft inactive" 
  data-to-side="1" data-on-side="0"> 
+<!-- To top buttion -->
+  <div id="toTop" class="sideStay sideStayTopLeft toTopToSide" style="display:none" onclick="window.scrollTo(0,0);">
+    <span> &uarr; </span>
+  </div>  
 <!-- On Off button -->
   <button class="searchButtonToSide" id="searchButton" 
    onclick="toggleSearchButton(this.nextElementSibling, this)" data-onoff="0"
@@ -330,9 +334,11 @@
       </div>
     </ul>
   </div>
+  <!--
   <div id="toTop" class="sideStay sideStayTopLeft toTopToSide" style="display:none" onclick="window.scrollTo(0,0);">
     <span> &uarr; </span>
   </div>  
+  -->
 </div>
 <div class="manpage">
 <div class="where"><a href="/">curl</a> / <a href="/docs/">Docs</a> / <a href="/docs/tooldocs.html">Tool</a> / <b>Man Page</b></div>
