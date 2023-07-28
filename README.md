@@ -10,4 +10,4 @@ version 8.2.1. <br/>
 
 Click below to open page (*opens in current tab*):
 
-[curl-www manpage feature request](https://isocialpractice.github.io/curl-manpage/)
+[curl-www manpage feature request](https://jhauga.github.io/curl-manpage/)
