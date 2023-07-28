@@ -10,7 +10,7 @@
 <link rel="icon" href="https://curl.se/logo/curl-symbol.svg" type="image/svg+xml">
 
 <link rel="STYLESHEET" type="text/css" href="https://curl.se/manpage.css">
-<!--<link rel="STYLESHEET" type="text/css" href="/manpage-option-menu.css">-->
+<link rel="STYLESHEET" type="text/css" href="/manpage-option-menu.css">
 </head>
 <body>
 <div class="main">
@@ -83,9 +83,10 @@
 </div>
 </div>
 <div class="contents">
+
 <!-- To top styled as button. -->
 <div id="to-top-Button" class="sideStay sideStayLeft inactive">
-  <div id="toTop" class="sideStay sideStayTopLeft toTopToSide" style="display:none" href="#">
+  <div id="toTop" class="sideStay sideStayTopLeft toTopToSide" style="display:none" onclick="window.scrollTo(0,0);">
     <span> &uarr; </span>
   </div>
 </div>
@@ -338,11 +339,6 @@
       </div>
     </ul>
   </div>
-  <!--
-  <div id="toTop" class="sideStay sideStayTopLeft toTopToSide" style="display:none" onclick="window.scrollTo(0,0);">
-    <span> &uarr; </span>
-  </div>  
-  -->
 </div>
 <div class="manpage">
 <div class="where"><a href="/">curl</a> / <a href="/docs/">Docs</a> / <a href="/docs/tooldocs.html">Tool</a> / <b>Man Page</b></div>
@@ -3174,7 +3170,7 @@ curl https://curl.se/info
 <p class="level0">Daniel Stenberg is the main author, but the whole list of contributors is found in the separate THANKS file. </p><a name="WWW"></a><h2 class="nroffsh">Www</h2>
 <p class="level0"><a href="https://curl.se">https://curl.se</a> </p><a name="SEE"></a><h2 class="nroffsh">See also</h2>
 <p class="level0"><span Class="bold">ftp</span>(1), <span Class="bold">wget</span>(1) </p><p class="roffit">
- This HTML page was made with <a href="http://daniel.haxx.se/projects/roffit/">roffit</a>.
+ This HTML page was made with <a href="http://daniel.haxx.se/projects/roffit/">roffit</a>.</p>
 <!-- close div.manpage -->
 </div>
 </div>
@@ -3182,7 +3178,7 @@ curl https://curl.se/info
 <script defer src="https://www.fastly-insights.com/insights.js?k=8cb1247c-87c2-4af9-9229-768b1990f90b" type="text/javascript"></script>
 <!--<script src="/search-manpage.js" type="text/javascript"></script>-->
 
-<script>
+<!--<script>
  var cdn = "https://cdn.jsdelivr.net/gh/jhauga/curl-manpage/";
 
  // add css
@@ -3197,5 +3193,7 @@ curl https://curl.se/info
  docScript.src = cdn + "search-manpage.js";
  document.body.appendChild(docScript);
 </script>
+-->
+<script src="/search-manpage.js"></script>
 </body>
 </html>

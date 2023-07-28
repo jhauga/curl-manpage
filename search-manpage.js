@@ -161,8 +161,8 @@ function toggleSearchButton(showhide, onoff) {
     totopButton.className += " inactive";
     onoff.parentElement.className += " inactive";
     // 3. responsive margins if screen < 770 add else remove
-    if (manpageDiv.id) { manpageDiv.removeAttribute("id")
-    if (manpageMenu.id) { manpageMenu.removeAttribute("id")
+    if (manpageDiv.id) { manpageDiv.removeAttribute("id"); }
+    if (manpageMenu.id) { manpageMenu.removeAttribute("id"); }
     // put back to side if scrolled past 100.
     // Turn button off
     onOffButton = 0;
