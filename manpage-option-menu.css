@@ -1,6 +1,6 @@
 /* option menu items */
 /* Apply style the the entire option menu. */
-div.sideStay {
+div#manpage-option-menu.sideStay {
   display: inline-block;
   position:fixed;
   max-width: 11.5em;
@@ -19,7 +19,7 @@ div.sideStay {
 }
 
 /* Style option menu width when not active. */
-div.sideStayLeft.inactive {
+div#manpage-option-menu.sideStayLeft.inactive {
   max-width: 86px;
   min-width: unset;
 }
@@ -54,13 +54,20 @@ div.sideStayTopLeft {
 }
 
 /* Style to top as button and other constant styles. */
-div.sideStay.sideStayLeft.inactive div.sideStayTopLeft,
-div.sideStay.sideStayLeft div.sideStayTopLeft {  
+div#to-top-Button.sideStay.sideStayLeft.inactive div.sideStayTopLeft,
+div#to-top-Button.sideStay.sideStayLeft div.sideStayTopLeft {  
+  position: fixed;
   min-width: revert;
   width: 3em;
   height: 2em;
   top: 0;
-  font-size: 50%;
+  font-size: 50%;  
+  margin-top: 10px;
+  padding-top: 10px;
+  padding:5px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  color:white;
+  background: #0a3754;        
   box-shadow: none;
   border: 2px solid white;
   cursor: pointer;
@@ -73,9 +80,10 @@ div.sideStay.sideStayLeft.inactive div.sideStayTopLeft {
 }
 
 /* Style to top button when pressed. */
-div.sideStay.sideStayLeft div.sideStayTopLeft {  
+div.sideStay.sideStayLeft div.sideStayTopLeft {
   right: revert;
-  left: 19em;
+  left: 15em;
+  z-index: 2;
 }
 
 /* Sytle to top button text. */
@@ -133,17 +141,17 @@ button {
 }
 
 /* Animate by option menu switch status for button movement. */
-div[data-on-side] {
+div#manpage-option-menu[data-on-side] {
  transition--timing-function: linear;
  transition-duration: 0.8s;
 }
 
 /* The button has been pressed on. */
-div[data-on-side="1"] {
+div#manpage-option-menu[data-on-side="1"] {
  left: -80px; 
 }
 /* The button has been pressed off. */
-div[data-on-side="0"] {
+div#manpage-option-menu[data-on-side="0"] {
  left: 0px;
 }
 
