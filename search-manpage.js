@@ -28,48 +28,49 @@ var setScroll = 0; var scrollOver100 = 0; var mousedOver = 0; var onOffButton = 
 
 // Option menu DOM elements
 var toTop = document.getElementById("toTop"); // to top button
+var totopButton = document.getElementById("to-top-Button"); // to top button parent
 var searchButton = document.getElementById("searchButton"); // show option dropdown
 var searchButtonData = searchButton.dataset; // switch for button on mouseover
 var manpageOptionMenu = document.getElementById("manpage-option-menu"); // top of DOM
 var manpageOptionMenuData = manpageOptionMenu.dataset; // switch to put menu to side
 
 // Show to top button.
-function showTop() {  
-    let curScroll, nextScroll;
-    document.addEventListener("scroll", function() {
-      // switch for scrolled down over 100
-      if (document.documentElement.scrollTop > 100) { scrollOver100 = 1; }
-      else { scrollOver100 = 0; } 
-      
-      // Toggle button to side and stay
-      if ( // scrolled past 100px, menu is not on side, and not moused over
-        scrollOver100 == 1 &&
-        manpageOptionMenuData.onSide == 0 &&
-        mousedOver == 0 && 
-        onOffButton == 0
-       ) {       
-       manpageOptionMenu.dataset.onSide = 1;
-       if ( searchButton.className.indexOf("searchButtonToSide") > -1 &&
-            manpageOptionMenuData.toSide == 1 ) {
-          // put menu to side and done          
-          searchButton.dataset.toSide = 1;
-       }
-      }
-      else if (document.documentElement.scrollTop > 500) {       
-        // show to top button on right
-        toTop.style.display = "inline-block";       
-      } else {
-       // hide to top button
-       toTop.style.display = "none"; // hide to top       
-       searchButton.dataset.toSide = 0; // button default
-       
-       // set menu to defaults
-       if (document.documentElement.scrollTop < 100) {
-         manpageOptionMenu.style.left = ""; // now use css styles
-         manpageOptionMenu.dataset.onSide = 0;
-       }
-      }
-    });  
+function showTop() {    
+  // Add scroll event to menu and top button.
+  document.addEventListener("scroll", function() {
+    // switch for scrolled down over 100
+    if (document.documentElement.scrollTop > 100) { scrollOver100 = 1; }
+    else { scrollOver100 = 0; } 
+
+    // Toggle button to side and stay
+    if ( // scrolled past 100px, menu is not on side, and not moused over
+      scrollOver100 == 1 &&
+      manpageOptionMenuData.onSide == 0 &&
+      mousedOver == 0 && 
+      onOffButton == 0
+     ) {       
+     manpageOptionMenu.dataset.onSide = 1;
+     if ( searchButton.className.indexOf("searchButtonToSide") > -1 &&
+          manpageOptionMenuData.toSide == 1 ) {
+        // put menu to side and done          
+        searchButton.dataset.toSide = 1;
+     }
+    }
+    else if (document.documentElement.scrollTop > 500) {       
+      // show to top button on right
+      toTop.style.display = "inline-block";       
+    } else {
+     // hide to top button
+     toTop.style.display = "none"; // hide to top       
+     searchButton.dataset.toSide = 0; // button default
+
+     // set menu to defaults
+     if (document.documentElement.scrollTop < 100) {
+       manpageOptionMenu.style.left = ""; // now use css styles
+       manpageOptionMenu.dataset.onSide = 0;
+     }
+    }
+  });  
 }
 
 // Put to top and show option buttons to side when menu not in view
@@ -108,11 +109,12 @@ function buttonToSide(status, onoff) {
 function searchOptions(txt) {
   let optionMenu = document.getElementById("optionMenu");
   let optionMenuLi = optionMenu.getElementsByTagName("li");
+  // show or hide options when searching.
   for (i = 0; i < optionMenuLi.length; i++) {
     let curLI = optionMenuLi[i].innerText;
-    if (curLI.indexOf(txt) > -1) {
+    if (curLI.indexOf(txt) > -1) { // if match show
       optionMenuLi[i].style.display = "";
-    } else {
+    } else { // else don't show
       optionMenuLi[i].style.display = "none";
     }
   }
@@ -125,41 +127,43 @@ function toggleSearchButton(showhide, onoff) {
   let manpageMenu = document.getElementsByClassName("menu")[0];  
   
   // toggle display elements
-  let showItem = showhide.nextElementSibling;                  //----\ select option menu
-  let curData = onoff.dataset;                               //      |
-  if (curData.onoff == 0) {                                //        |
-    // 1.set switch, show menu, change style, change text-//---------|
-    manpageOptionMenu.dataset.toSide = 0;                //          |
-    curData.onoff = 1;                                  //           | 
-    showItem.style.display = "";                       //            |
-    onoff.style.background = "white";                  //            |
-    onoff.style.color = "black";                       //           \|/ 
-    onoff.innerHTML = onoff.innerHTML.replace("Show", "Hide"); //    .                                                              
-    // 2. set to side when menu out of view and style parrent //-----|
-    onoff.className = "";                              //            |
-    onoff.parentElement.className = onoff              //           \|/
-    .parentElement.className.replace(" inactive", ""); //          2 .    
-    // 3. responsive margins if screen < 770 add else remove //------|
-    if (!manpageDiv.id) { manpageDiv.id = "activeManDiv"; }   //    \|/
-    if (!manpageMenu.id) { manpageMenu.id = "activeManMenu"; } //  3 .    
-    // Turn button on                                         //
-    onOffButton = 1;                                         //
-  } else {                                                  //
-    // "..." -    -   -   -   -   -   -   -   -    -    - .........1 .
-    manpageOptionMenu.dataset.toSide = 1;                //         /|\
-    curData.onoff = 0;                                  //           |
-    showItem.style.display = "none";                   //            |
-    onoff.style.background = "";                       //            |
-    onoff.style.color = "";                            //            |
-    onoff.innerHTML = onoff.innerHTML.replace("Hide", "Show"); //    |
-    // "..." -    -   -   -   -   -   -   -   -    -   //..........2 .
-    onoff.className = "searchButtonToSide";            //           /|\
-    onoff.parentElement.className += " inactive";      //            |
-    // "..." -    -   -   -   -   -   -   -   -    -     //........3 .
-    if (manpageDiv.id) { manpageDiv.removeAttribute("id");} //      /|\
-    if (manpageMenu.id) { manpageMenu.removeAttribute("id");} //     |    
-    //                                                          //   |
-    // put back to side if scrolled past 100. -----------------------/
+  let showItem = showhide.nextElementSibling;
+  let curData = onoff.dataset;
+  if (curData.onoff == 0) {
+    // 1.set switch, show menu, change style, change text
+    manpageOptionMenu.dataset.toSide = 0;
+    curData.onoff = 1;
+    showItem.style.display = "";
+    onoff.style.background = "white";
+    onoff.style.color = "black";
+    onoff.innerHTML = onoff.innerHTML.replace("Show", "Hide");
+    // 2. show the option menu and reposition to top button when on
+    onoff.className = "";
+    totopButton.className = totopButton.className.replace(" inactive", "");
+    onoff.parentElement.className = onoff
+     .parentElement.className.replace(" inactive", "");
+    // 3. responsive margins if screen < 770 add else remove
+    if (!manpageDiv.id) { manpageDiv.id = "activeManDiv"; }
+    if (!manpageMenu.id) { manpageMenu.id = "activeManMenu"; }
+    // Turn button on
+    onOffButton = 1;
+  } else {
+    // 1.set switch, hide menu, change style, change text
+    manpageOptionMenu.dataset.toSide = 1;
+    curData.onoff = 0;
+    showItem.style.display = "none";
+    onoff.style.background = "";
+    onoff.style.color = "";
+    onoff.innerHTML = onoff.innerHTML.replace("Hide", "Show");
+    // 2. set to side when menu out of view, styling parrent with css
+    //    and reposition top button.
+    onoff.className = "searchButtonToSide";
+    totopButton.className += " inactive";
+    onoff.parentElement.className += " inactive";
+    // 3. responsive margins if screen < 770 add else remove
+    if (manpageDiv.id) { manpageDiv.removeAttribute("id")
+    if (manpageMenu.id) { manpageMenu.removeAttribute("id")
+    // put back to side if scrolled past 100.
     // Turn button off
     onOffButton = 0;
   }
