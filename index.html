@@ -665,6 +665,7 @@ curl https://curl.se/info
 <p class="level1">See also <a class="emphasis" href="#-b">-b, --cookie</a>. </p>
 <p class="level0"><a name="-b"></a><span class="nroffip">-b, --cookie &lt;data|filename&gt;</span> </p>
 <p class="level1">(HTTP) Pass the data to the HTTP server in the Cookie header. It is supposedly the data previously received from the server in a &quot;Set-Cookie:&quot; line. The data should be in the format &quot;NAME1=VALUE1; NAME2=VALUE2&quot;. This makes curl use the cookie header with this content explicitly in all outgoing request(s). If multiple requests are done due to authentication, followed redirects or similar, they will all get this cookie passed on. </p>
+
 <p class="level1">If no &#39;=&#39; symbol is used in the argument, it is instead treated as a filename to read previously stored cookie from. This option also activates the cookie engine which will make curl record incoming cookies, which may be handy if you are using this in combination with the <a class="emphasis" href="#-L">-L, --location</a> option or do multiple URL transfers on the same invoke. If the file name is exactly a minus (&quot;-&quot;), curl will instead read the contents from stdin. </p>
 <p class="level1">The file format of the file to read cookies from should be plain HTTP headers (Set-Cookie style) or the Netscape/Mozilla cookie file format. </p>
 <p class="level1">The file specified with <a class="emphasis" href="#-b">-b, --cookie</a> is only used as input. No cookies will be written to the file. To store cookies, use the <a class="emphasis" href="#-c">-c, --cookie-jar</a> option. </p>
@@ -1112,6 +1113,7 @@ curl https://curl.se/info
 &nbsp;curl -P eth0 ftp:/example.com
 &nbsp;curl -P 192.168.0.2 ftp:/example.com
 </pre>
+
 <p class="level1">See also <a class="emphasis" href="#--ftp-pasv">--ftp-pasv</a> and <a class="emphasis" href="#--disable-eprt">--disable-eprt</a>. </p>
 <p class="level0"><a name="--ftp-pret"></a><span class="nroffip">--ftp-pret</span> </p>
 <p class="level1">(FTP) Tell curl to send a PRET command before PASV (and EPSV). Certain FTP servers, mainly drftpd, require this non-standard command for directory listings as well as up and downloads in PASV mode. </p>
@@ -2275,6 +2277,7 @@ curl https://curl.se/info
 <p class="level1">This option can be used many times to add many host names to resolve. </p>
 <p class="level1"><a class="emphasis" href="#--resolve">--resolve</a> can be used several times in a command line </p>
 <p class="level1">Example: </p><pre class="level1">
+
 &nbsp;curl --resolve example.com:443:127.0.0.1 https://example.com
 </pre>
 <p class="level1">See also <a class="emphasis" href="#--connect-to">--connect-to</a> and <a class="emphasis" href="#--alt-svc">--alt-svc</a>. </p>
