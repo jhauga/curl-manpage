@@ -1,16 +1,14 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head> 
-<title>curl - How To Use</title>
+<head> <title>curl - How To Use</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-
-<link rel="stylesheet" type="text/css" href="https://curl.se/curl.css">
-<link rel="shortcut icon" href="https://curl.se/favicon.ico">
-<link rel="icon" href="https://curl.se/logo/curl-symbol.svg" type="image/svg+xml">
-
+<link rel="stylesheet" type="text/css" href="/curl.css">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="icon" href="/logo/curl-symbol.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="cURL Releases" href="https://github.com/curl/curl/releases.atom">
 <link rel="STYLESHEET" type="text/css" href="https://curl.se/manpage.css">
-<!--<link rel="STYLESHEET" type="text/css" href="/manpage-option-menu.css">-->
+<link rel="STYLESHEET" type="text/css" href="/manpage-option-menu.css">
 </head>
 <body>
 <div class="main">
@@ -83,25 +81,31 @@
 </div>
 </div>
 <div class="contents">
-<div id="manpage-option-menu" class="sideStay sideStayLeft inactive" 
- data-to-side="1" data-on-side="0"> 
+<!-- Option Search Menu -->
+<div id="manpage-option-menu" class="sideStay sideStayLeft inactive"
+ data-to-side="1" data-on-side="0">
 <!-- On Off button -->
-  <button class="searchButtonToSide" id="searchButton" 
+  <button class="searchButtonToSide" id="searchButton"
    onclick="toggleSearchButton(this.nextElementSibling, this)" data-onoff="0"
    onmouseenter="buttonToSide(1, this.dataset.onoff)" data-to-Side="1"
    onmouseleave="buttonToSide(0, this.dataset.onoff)">Show Options</button><br>
   <div style="display:none">
     <div class="searchBox">
       <label for="optionSearchField">Search Options</label><br>
-      <img src="https://curl.se/logo/curl-symbol.svg" alt="curl symbol"><input id="optionSearchField" name="optionSearchField" type="search" oninput="searchOptions(this.value)">
+      <img src="https://curl.se/logo/curl-symbol.svg" alt="curl symbol">
+      <input id="optionSearchField" name="optionSearchField"
+       type="search" oninput="searchOptions(this.value)">
     </div>
     <ul id="optionMenu">
+      <!-- Start option list -->
       <div id="fullOptionList" style="display:none">
         <li><a href="#">--abstract-unix-socket</a></li>
         <li><a href="#">--alt-svc</a></li>
         <li><a href="#">--anyauth</a></li>
         <li><a href="#">-a, --append</a></li>
+        <li><a href="#">--aws-sigv4</a></li>
         <li><a href="#">--basic</a></li>
+        <li><a href="#">--ca-native</a></li>
         <li><a href="#">--cacert</a></li>
         <li><a href="#">--capath</a></li>
         <li><a href="#">-E, --cert</a></li>
@@ -117,8 +121,10 @@
         <li><a href="#">-b, --cookie</a></li>
         <li><a href="#">-c, --cookie-jar</a></li>
         <li><a href="#">--create-dirs</a></li>
+        <li><a href="#">--create-file-mode</a></li>
         <li><a href="#">--crlf</a></li>
         <li><a href="#">--crlfile</a></li>
+        <li><a href="#">--curves</a></li>
         <li><a href="#">-d, --data</a></li>
         <li><a href="#">--data-ascii</a></li>
         <li><a href="#">--data-binary</a></li>
@@ -134,17 +140,21 @@
         <li><a href="#">--dns-ipv4-addr</a></li>
         <li><a href="#">--dns-ipv6-addr</a></li>
         <li><a href="#">--dns-servers</a></li>
+        <li><a href="#">--doh-cert-status</a></li>
+        <li><a href="#">--doh-insecure</a></li>
         <li><a href="#">--doh-url</a></li>
         <li><a href="#">-D, --dump-header</a></li>
         <li><a href="#">--egd-file</a></li>
         <li><a href="#">--engine</a></li>
-        <li><a href="#">--etag-save</a></li>
         <li><a href="#">--etag-compare</a></li>
+        <li><a href="#">--etag-save</a></li>
         <li><a href="#">--expect100-timeout</a></li>
         <li><a href="#">-f, --fail</a></li>
         <li><a href="#">--fail-early</a></li>
+        <li><a href="#">--fail-with-body</a></li>
         <li><a href="#">--false-start</a></li>
         <li><a href="#">-F, --form</a></li>
+        <li><a href="#">--form-escape</a></li>
         <li><a href="#">--form-string</a></li>
         <li><a href="#">--ftp-account</a></li>
         <li><a href="#">--ftp-alternative-to-user</a></li>
@@ -161,22 +171,27 @@
         <li><a href="#">-g, --globoff</a></li>
         <li><a href="#">--happy-eyeballs-timeout-ms</a></li>
         <li><a href="#">--haproxy-protocol</a></li>
+        <li><a href="#">--haproxy-clientip</a></li>
         <li><a href="#">-I, --head</a></li>
         <li><a href="#">-H, --header</a></li>
         <li><a href="#">-h, --help</a></li>
         <li><a href="#">--hostpubmd5</a></li>
+        <li><a href="#">--hostpubsha256</a></li>
+        <li><a href="#">--hsts</a></li>
         <li><a href="#">--http0.9</a></li>
         <li><a href="#">-0, --http1.0</a></li>
         <li><a href="#">--http1.1</a></li>
         <li><a href="#">--http2</a></li>
         <li><a href="#">--http2-prior-knowledge</a></li>
         <li><a href="#">--http3</a></li>
+        <li><a href="#">--http3-only</a></li>
         <li><a href="#">--ignore-content-length</a></li>
         <li><a href="#">-i, --include</a></li>
         <li><a href="#">-k, --insecure</a></li>
         <li><a href="#">--interface</a></li>
         <li><a href="#">-4, --ipv4</a></li>
         <li><a href="#">-6, --ipv6</a></li>
+        <li><a href="#">--json</a></li>
         <li><a href="#">-j, --junk-session-cookies</a></li>
         <li><a href="#">--keepalive-time</a></li>
         <li><a href="#">--key</a></li>
@@ -192,6 +207,7 @@
         <li><a href="#">--mail-auth</a></li>
         <li><a href="#">--mail-from</a></li>
         <li><a href="#">--mail-rcpt</a></li>
+        <li><a href="#">--mail-rcpt-allowfails</a></li>
         <li><a href="#">-M, --manual</a></li>
         <li><a href="#">--max-filesize</a></li>
         <li><a href="#">--max-redirs</a></li>
@@ -204,6 +220,7 @@
         <li><a href="#">-:, --next</a></li>
         <li><a href="#">--no-alpn</a></li>
         <li><a href="#">-N, --no-buffer</a></li>
+        <li><a href="#">--no-clobber</a></li>
         <li><a href="#">--no-keepalive</a></li>
         <li><a href="#">--no-npn</a></li>
         <li><a href="#">--no-progress-meter</a></li>
@@ -213,6 +230,7 @@
         <li><a href="#">--ntlm-wb</a></li>
         <li><a href="#">--oauth2-bearer</a></li>
         <li><a href="#">-o, --output</a></li>
+        <li><a href="#">--output-dir</a></li>
         <li><a href="#">-Z, --parallel</a></li>
         <li><a href="#">--parallel-immediate</a></li>
         <li><a href="#">--parallel-max</a></li>
@@ -227,9 +245,10 @@
         <li><a href="#">--proto</a></li>
         <li><a href="#">--proto-default</a></li>
         <li><a href="#">--proto-redir</a></li>
-        <li><a href="#">-x, --proxy[protocol://]host[:port]</a></li>
+        <li><a href="#">-x, --proxy</a></li>
         <li><a href="#">--proxy-anyauth</a></li>
         <li><a href="#">--proxy-basic</a></li>
+        <li><a href="#">--proxy-ca-native</a></li>
         <li><a href="#">--proxy-cacert</a></li>
         <li><a href="#">--proxy-capath</a></li>
         <li><a href="#">--proxy-cert</a></li>
@@ -238,6 +257,7 @@
         <li><a href="#">--proxy-crlfile</a></li>
         <li><a href="#">--proxy-digest</a></li>
         <li><a href="#">--proxy-header</a></li>
+        <li><a href="#">--proxy-http2</a></li>
         <li><a href="#">--proxy-insecure</a></li>
         <li><a href="#">--proxy-key</a></li>
         <li><a href="#">--proxy-key-type</a></li>
@@ -247,6 +267,7 @@
         <li><a href="#">--proxy-pinnedpubkey</a></li>
         <li><a href="#">--proxy-service-name</a></li>
         <li><a href="#">--proxy-ssl-allow-beast</a></li>
+        <li><a href="#">--proxy-ssl-auto-client-cert</a></li>
         <li><a href="#">--proxy-tls13-ciphers</a></li>
         <li><a href="#">--proxy-tlsauthtype</a></li>
         <li><a href="#">--proxy-tlspassword</a></li>
@@ -259,16 +280,19 @@
         <li><a href="#">-Q, --quote</a></li>
         <li><a href="#">--random-file</a></li>
         <li><a href="#">-r, --range</a></li>
+        <li><a href="#">--rate</a></li>
         <li><a href="#">--raw</a></li>
         <li><a href="#">-e, --referer</a></li>
         <li><a href="#">-J, --remote-header-name</a></li>
         <li><a href="#">-O, --remote-name</a></li>
         <li><a href="#">--remote-name-all</a></li>
         <li><a href="#">-R, --remote-time</a></li>
+        <li><a href="#">--remove-on-error</a></li>
         <li><a href="#">-X, --request</a></li>
         <li><a href="#">--request-target</a></li>
         <li><a href="#">--resolve</a></li>
         <li><a href="#">--retry</a></li>
+        <li><a href="#">--retry-all-errors</a></li>
         <li><a href="#">--retry-connrefused</a></li>
         <li><a href="#">--retry-delay</a></li>
         <li><a href="#">--retry-max-time</a></li>
@@ -289,8 +313,10 @@
         <li><a href="#">-y, --speed-time</a></li>
         <li><a href="#">--ssl</a></li>
         <li><a href="#">--ssl-allow-beast</a></li>
+        <li><a href="#">--ssl-auto-client-cert</a></li>
         <li><a href="#">--ssl-no-revoke</a></li>
         <li><a href="#">--ssl-reqd</a></li>
+        <li><a href="#">--ssl-revoke-best-effort</a></li>
         <li><a href="#">-2, --sslv2</a></li>
         <li><a href="#">-3, --sslv3</a></li>
         <li><a href="#">--stderr</a></li>
@@ -315,10 +341,12 @@
         <li><a href="#">--tr-encoding</a></li>
         <li><a href="#">--trace</a></li>
         <li><a href="#">--trace-ascii</a></li>
+        <li><a href="#">--trace-ids</a></li>
         <li><a href="#">--trace-time</a></li>
         <li><a href="#">--unix-socket</a></li>
         <li><a href="#">-T, --upload-file</a></li>
         <li><a href="#">--url</a></li>
+        <li><a href="#">--url-query</a></li>
         <li><a href="#">-B, --use-ascii</a></li>
         <li><a href="#">-u, --user</a></li>
         <li><a href="#">-A, --user-agent</a></li>
@@ -326,13 +354,9 @@
         <li><a href="#">-V, --version</a></li>
         <li><a href="#">-w, --write-out</a></li>
         <li><a href="#">--xattr</a></li>
-
       </div>
     </ul>
   </div>
-  <div id="toTop" class="sideStay sideStayTopLeft toTopToSide" style="display:none" onclick="window.scrollTo(0,0);">
-    <span> &uarr; </span>
-  </div>  
 </div>
 <div class="manpage">
 <div class="where"><a href="/">curl</a> / <a href="/docs/">Docs</a> / <a href="/docs/tooldocs.html">Tool</a> / <b>Man Page</b></div>
@@ -421,7 +445,7 @@
 <p class="level0">curl displays this data to the terminal by default, so if you invoke curl to do an operation and it is about to write data to the terminal, it <span Class="emphasis">disables</span> the progress meter as otherwise it would mess up the output mixing progress meter and response data. </p>
 <p class="level0">If you want a progress meter for HTTP POST or PUT requests, you need to redirect the response output to a file, using shell redirect (&gt;), <a class="emphasis" href="#-o">-o, --output</a> or similar. </p>
 <p class="level0">This does not apply to FTP upload as that operation does not spit out any response data to the terminal. </p>
-<p class="level0">If you prefer a progress &quot;bar&quot; instead of the regular meter, <a Class="emphasis" href="#-hash">-&#35;, --progress-bar</a> is your friend. You can also disable the progress meter completely with the <a class="emphasis" href="#-s">-s, --silent</a> option. </p><a name="VERSION"></a><h2 class="nroffsh">Version</h2>
+<p class="level0">If you prefer a progress &quot;bar&quot; instead of the regular meter, <span Class="emphasis">-&#35;, --progress-bar</span> is your friend. You can also disable the progress meter completely with the <a class="emphasis" href="#-s">-s, --silent</a> option. </p><a name="VERSION"></a><h2 class="nroffsh">Version</h2>
 <p class="level0">This man page describes curl 8.2.1. If you use a later version, chances are this man page does not fully document it. If you use an earlier version, this document tries to include version information about which specific version that introduced changes. </p>
 <p class="level0">You can always learn which the latest curl version is by running </p><pre class="level0">
 curl https://curl.se/info
@@ -431,8 +455,8 @@ curl https://curl.se/info
 <p class="level0">The short &quot;single-dash&quot; form of the options, -d for example, may be used with or without a space between it and its value, although a space is a recommended separator. The long &quot;double-dash&quot; form, <a class="emphasis" href="#-d">-d, --data</a> for example, requires a space between it and its value. </p>
 <p class="level0">Short version options that do not need any additional values can be used immediately next to each other, like for example you can specify all the options -O, -L and -v at once as -OLv. </p>
 <p class="level0">In general, all boolean options are enabled with --<span Class="bold">option</span> and yet again disabled with --<span Class="bold">no-</span>option. That is, you use the same option name but prefix it with &quot;no-&quot;. However, in this list we mostly only list and show the --option version of them. </p>
-<p class="level0">When <a class="emphasis" href="#-:">-:, --next</a> is used, it resets the parser state and you start again with a clean option state, except for the options that are &quot;global&quot;. Global options will retain their values and meaning even after <a class="emphasis" href="#-:">-:, --next</a>. </p>
-<p class="level0">The following options are global: <a class="emphasis" href="#--fail-early">--fail-early</a>, <a class="emphasis" href="#--libcurl">--libcurl</a>, <a class="emphasis" href="#--parallel-immediate">--parallel-immediate</a>, <a class="emphasis" href="#-Z">-Z, --parallel</a>, <a Class="emphasis" href="#-hash">-&#35;, --progress-bar</a>, <a class="emphasis" href="#--rate">--rate</a>, <a class="emphasis" href="#-S">-S, --show-error</a>, <a class="emphasis" href="#--stderr">--stderr</a>, <a class="emphasis" href="#--styled-output">--styled-output</a>, <a class="emphasis" href="#--trace-ascii">--trace-ascii</a>, <a class="emphasis" href="#--trace-ids">--trace-ids</a>, <a class="emphasis" href="#--trace-time">--trace-time</a>, <a class="emphasis" href="#--trace">--trace</a> and <a class="emphasis" href="#-v">-v, --verbose</a>. </p>
+<p class="level0">When <a class="emphasis" href="#-">-:, --next</a> is used, it resets the parser state and you start again with a clean option state, except for the options that are &quot;global&quot;. Global options will retain their values and meaning even after <a class="emphasis" href="#-">-:, --next</a>. </p>
+<p class="level0">The following options are global: <a class="emphasis" href="#--fail-early">--fail-early</a>, <a class="emphasis" href="#--libcurl">--libcurl</a>, <a class="emphasis" href="#--parallel-immediate">--parallel-immediate</a>, <a class="emphasis" href="#-Z">-Z, --parallel</a>, <span Class="emphasis">-&#35;, --progress-bar</span>, <a class="emphasis" href="#--rate">--rate</a>, <a class="emphasis" href="#-S">-S, --show-error</a>, <a class="emphasis" href="#--stderr">--stderr</a>, <a class="emphasis" href="#--styled-output">--styled-output</a>, <a class="emphasis" href="#--trace-ascii">--trace-ascii</a>, <a class="emphasis" href="#--trace-ids">--trace-ids</a>, <a class="emphasis" href="#--trace-time">--trace-time</a>, <a class="emphasis" href="#--trace">--trace</a> and <a class="emphasis" href="#-v">-v, --verbose</a>. </p>
 <p class="level0"><a name="--abstract-unix-socket"></a><span class="nroffip">--abstract-unix-socket &lt;path&gt;</span> </p>
 <p class="level1">(HTTP) Connect through an abstract Unix domain socket, instead of using the network. Note: netstat shows the path of an abstract socket prefixed with &#39;@&#39;, however the &lt;path&gt; argument should not have this leading character. </p>
 <p class="level1">If <a class="emphasis" href="#--abstract-unix-socket">--abstract-unix-socket</a> is provided several times, the last set value will be used. </p>
@@ -573,7 +597,7 @@ curl https://curl.se/info
 <p class="level1">Only write one option per physical line in the config file. A single line is required to be no more than 10 megabytes (since 8.2.0). </p>
 <p class="level1">Specify the filename to <a class="emphasis" href="#-K">-K, --config</a> as &#39;-&#39; to make curl read the file from stdin. </p>
 <p class="level1">Note that to be able to specify a URL in the config file, you need to specify it using the <a class="emphasis" href="#--url">--url</a> option, and not by simply writing the URL on its own line. So, it could look similar to this: </p>
-<p class="level1">url = &quot;<a href="https://curl.se/docs/">https://curl.se/docs/</a>&quot; </p><pre class="level1">
+<p class="level1">url = &quot;<a href="https://curl.se/docs/&quot;">https://curl.se/docs/&quot;</a> </p><pre class="level1">
 &nbsp;&#35; --- Example file ---
 &nbsp;&#35; this is a comment
 &nbsp;url = &quot;example.com&quot;
@@ -862,7 +886,7 @@ curl https://curl.se/info
 <p class="level0"><a name="-D"></a><span class="nroffip">-D, --dump-header &lt;filename&gt;</span> </p>
 <p class="level1">(HTTP FTP) Write the received protocol headers to the specified file. If no headers are received, the use of this option will create an empty file. </p>
 <p class="level1">When used in FTP, the FTP server response lines are considered being &quot;headers&quot; and thus are saved there. </p>
-<p class="level1">Having multiple transfers in one set of operations (i.e. the URLs in one <a class="emphasis" href="#-:">-:, --next</a> clause), will append them to the same file, separated by a blank line. </p>
+<p class="level1">Having multiple transfers in one set of operations (i.e. the URLs in one <a class="emphasis" href="#-">-:, --next</a> clause), will append them to the same file, separated by a blank line. </p>
 <p class="level1">If <a class="emphasis" href="#-D">-D, --dump-header</a> is provided several times, the last set value will be used. </p>
 <p class="level1">Example: </p><pre class="level1">
 &nbsp;curl --dump-header store.txt https://example.com
@@ -912,7 +936,7 @@ curl https://curl.se/info
 <p class="level1">Fail and exit on the first detected transfer error. </p>
 <p class="level1">When curl is used to do multiple transfers on the command line, it will attempt to operate on each given URL, one by one. By default, it will ignore errors if there are more URLs given and the last URL&#39;s success will determine the error code curl returns. So early failures will be &quot;hidden&quot; by subsequent successful transfers. </p>
 <p class="level1">Using this option, curl will instead return an error on the first transfer that fails, independent of the amount of URLs that are given on the command line. This way, no transfer failures go undetected by scripts and similar. </p>
-<p class="level1">This option does not imply <a class="emphasis" href="#-f">-f, --fail</a>, which causes transfers to fail due to the server&#39;s HTTP status code. You can combine the two options, however note <a class="emphasis" href="#-f">-f, --fail</a> is not global and is therefore contained by <a class="emphasis" href="#-:">-:, --next</a>. </p>
+<p class="level1">This option does not imply <a class="emphasis" href="#-f">-f, --fail</a>, which causes transfers to fail due to the server&#39;s HTTP status code. You can combine the two options, however note <a class="emphasis" href="#-f">-f, --fail</a> is not global and is therefore contained by <a class="emphasis" href="#-">-:, --next</a>. </p>
 <p class="level1">This option is global and does not need to be specified for each use of --next. </p>
 <p class="level1">Providing <a class="emphasis" href="#--fail-early">--fail-early</a> multiple times has no extra effect. Disable it again with --no-fail-early. </p>
 <p class="level1">Example: </p><pre class="level1">
@@ -1567,13 +1591,13 @@ curl https://curl.se/info
 &nbsp;curl --netrc https://example.com
 </pre>
 <p class="level1">See also <a class="emphasis" href="#--netrc-file">--netrc-file</a>, <a class="emphasis" href="#-K">-K, --config</a> and <a class="emphasis" href="#-u">-u, --user</a>. This option is mutually exclusive to <a class="emphasis" href="#--netrc-file">--netrc-file</a> and <a class="emphasis" href="#--netrc-optional">--netrc-optional</a>. </p>
-<p class="level0"><a name="-:"></a><span class="nroffip">-:, --next</span> </p>
+<p class="level0"><a name="-"></a><span class="nroffip">-:, --next</span> </p>
 <p class="level1">Tells curl to use a separate operation for the following URL and associated options. This allows you to send several URL requests, each with their own specific options, for example, such as different user names or custom requests for each. </p>
-<p class="level1"><a class="emphasis" href="#-:">-:, --next</a> will reset all local options and only global ones will have their values survive over to the operation following the <a class="emphasis" href="#-:">-:, --next</a> instruction. Global options include <a class="emphasis" href="#-v">-v, --verbose</a>, <a class="emphasis" href="#--trace">--trace</a>, <a class="emphasis" href="#--trace-ascii">--trace-ascii</a> and <a class="emphasis" href="#--fail-early">--fail-early</a>. </p>
+<p class="level1"><a class="emphasis" href="#-">-:, --next</a> will reset all local options and only global ones will have their values survive over to the operation following the <a class="emphasis" href="#-">-:, --next</a> instruction. Global options include <a class="emphasis" href="#-v">-v, --verbose</a>, <a class="emphasis" href="#--trace">--trace</a>, <a class="emphasis" href="#--trace-ascii">--trace-ascii</a> and <a class="emphasis" href="#--fail-early">--fail-early</a>. </p>
 <p class="level1">For example, you can do both a GET and a POST in a single command line: </p><pre class="level1">
 &nbsp;curl www1.example.com --next -d postthis www2.example.com
 </pre>
-<p class="level1"><a class="emphasis" href="#-:">-:, --next</a> can be used several times in a command line </p>
+<p class="level1"><a class="emphasis" href="#-">-:, --next</a> can be used several times in a command line </p>
 <p class="level1">Examples: </p><pre class="level1">
 &nbsp;curl https://example.com --next -d postthis www2.example.com
 &nbsp;curl -I https://example.com --next https://example.net/
@@ -1592,7 +1616,7 @@ curl https://curl.se/info
 <p class="level1">Example: </p><pre class="level1">
 &nbsp;curl --no-buffer https://example.com
 </pre>
-<p class="level1">See also <a Class="emphasis" href="#-hash">-&#35;, --progress-bar</a>. </p>
+<p class="level1">See also <span Class="emphasis">-&#35;, --progress-bar</span>. </p>
 <p class="level0"><a name="--no-clobber"></a><span class="nroffip">--no-clobber</span> </p>
 <p class="level1">When used in conjunction with the <a class="emphasis" href="#-o">-o, --output</a>, <a class="emphasis" href="#-J">-J, --remote-header-name</a>, <a class="emphasis" href="#-O">-O, --remote-name</a>, or <a class="emphasis" href="#--remote-name-all">--remote-name-all</a> options, curl avoids overwriting files that already exist. Instead, a dot and a number gets appended to the name of the file that would be created, up to filename.100 after which it will not create any file. </p>
 <p class="level1">Note that this is the negated option name documented.  You can thus use --clobber to enforce the clobbering, even if <a class="emphasis" href="#-J">-J, --remote-header-name</a> is specified. </p>
@@ -1668,7 +1692,7 @@ curl https://curl.se/info
 <p class="level1">See also <a class="emphasis" href="#--basic">--basic</a>, <a class="emphasis" href="#--ntlm">--ntlm</a> and <a class="emphasis" href="#--digest">--digest</a>. Added in 7.33.0. </p>
 <p class="level0"><a name="--output-dir"></a><span class="nroffip">--output-dir &lt;dir&gt;</span> </p>
 <p class="level1">This option specifies the directory in which files should be stored, when <a class="emphasis" href="#-O">-O, --remote-name</a> or <a class="emphasis" href="#-o">-o, --output</a> are used. </p>
-<p class="level1">The given output directory is used for all URLs and output options on the command line, up until the first <a class="emphasis" href="#-:">-:, --next</a>. </p>
+<p class="level1">The given output directory is used for all URLs and output options on the command line, up until the first <a class="emphasis" href="#-">-:, --next</a>. </p>
 <p class="level1">If the specified target directory does not exist, the operation will fail unless <a class="emphasis" href="#--create-dirs">--create-dirs</a> is also used. </p>
 <p class="level1">If <a class="emphasis" href="#--output-dir">--output-dir</a> is provided several times, the last set value will be used. </p>
 <p class="level1">Example: </p><pre class="level1">
@@ -1713,7 +1737,7 @@ curl https://curl.se/info
 <p class="level1">See also <a class="emphasis" href="#-Z">-Z, --parallel</a> and <a class="emphasis" href="#--parallel-max">--parallel-max</a>. Added in 7.68.0. </p>
 <p class="level0"><a name="--parallel-max"></a><span class="nroffip">--parallel-max &lt;num&gt;</span> </p>
 <p class="level1">When asked to do parallel transfers, using <a class="emphasis" href="#-Z">-Z, --parallel</a>, this option controls the maximum amount of transfers to do simultaneously. </p>
-<p class="level1">This option is global and does not need to be specified for each use of <a class="emphasis" href="#-:">-:, --next</a>. </p>
+<p class="level1">This option is global and does not need to be specified for each use of <a class="emphasis" href="#-">-:, --next</a>. </p>
 <p class="level1">The default is 50. </p>
 <p class="level1">If <a class="emphasis" href="#--parallel-max">--parallel-max</a> is provided several times, the last set value will be used. </p>
 <p class="level1">Example: </p><pre class="level1">
@@ -1727,7 +1751,7 @@ curl https://curl.se/info
 <p class="level1">Example: </p><pre class="level1">
 &nbsp;curl --parallel https://example.com -o file1 https://example.com -o file2
 </pre>
-<p class="level1">See also <a class="emphasis" href="#-:">-:, --next</a> and <a class="emphasis" href="#-v">-v, --verbose</a>. Added in 7.66.0. </p>
+<p class="level1">See also <a class="emphasis" href="#-">-:, --next</a> and <a class="emphasis" href="#-v">-v, --verbose</a>. Added in 7.66.0. </p>
 <p class="level0"><a name="--pass"></a><span class="nroffip">--pass &lt;phrase&gt;</span> </p>
 <p class="level1">(SSH TLS) Passphrase for the private key. </p>
 <p class="level1">If <a class="emphasis" href="#--pass">--pass</a> is provided several times, the last set value will be used. </p>
@@ -1790,11 +1814,11 @@ curl https://curl.se/info
 &nbsp;curl --preproxy socks5://proxy.example -x http://http.example https://example.com
 </pre>
 <p class="level1">See also <a class="emphasis" href="#-x">-x, --proxy</a> and <a class="emphasis" href="#--socks5">--socks5</a>. Added in 7.52.0. </p>
-<p class="level0"><a name="-hash"></a><span class="nroffip">-&#35;, --progress-bar</span> </p>
+<p class="level0"><a name="-"></a><span class="nroffip">-&#35;, --progress-bar</span> </p>
 <p class="level1">Make curl display transfer progress as a simple progress bar instead of the standard, more informational, meter. </p>
 <p class="level1">This progress bar draws a single line of &#39;&#35;&#39; characters across the screen and shows a percentage if the transfer size is known. For transfers without a known size, there will be space ship (-=o=-) that moves back and forth but only while data is being transferred, with a set of flying hash sign symbols on top. </p>
 <p class="level1">This option is global and does not need to be specified for each use of --next. </p>
-<p class="level1">Providing <a Class="emphasis" href="#-hash">-&#35;, --progress-bar</a> multiple times has no extra effect. Disable it again with --no-progress-bar. </p>
+<p class="level1">Providing <span Class="emphasis">-&#35;, --progress-bar</span> multiple times has no extra effect. Disable it again with --no-progress-bar. </p>
 <p class="level1">Example: </p><pre class="level1">
 &nbsp;curl -&#35; -O https://example.com
 </pre>
@@ -2059,7 +2083,7 @@ curl https://curl.se/info
 <p class="level1">This option overrides existing environment variables that set the proxy to use. If there&#39;s an environment variable setting a proxy, you can set proxy to &quot;&quot; to override it. </p>
 <p class="level1">All operations that are performed over an HTTP proxy will transparently be converted to HTTP. It means that certain protocol specific operations might not be available. This is not the case if you can tunnel through the proxy, as one with the <a class="emphasis" href="#-p">-p, --proxytunnel</a> option. </p>
 <p class="level1">User and password that might be provided in the proxy string are URL decoded by curl. This allows you to pass in special characters such as @ by using %40 or pass in a colon with %3a. </p>
-<p class="level1">The proxy host can be specified the same way as the proxy environment variables, including the protocol prefix (<a>http://</a>) and the embedded user + password. </p>
+<p class="level1">The proxy host can be specified the same way as the proxy environment variables, including the protocol prefix (<a href="http://)">http://)</a> and the embedded user + password. </p>
 <p class="level1">When a proxy is used, the active FTP mode as set with <a class="emphasis" href="#-P">-P, --ftp-port</a>, cannot be used. </p>
 <p class="level1">If <a class="emphasis" href="#-x">-x, --proxy</a> is provided several times, the last set value will be used. </p>
 <p class="level1">Example: </p><pre class="level1">
@@ -2727,14 +2751,14 @@ curl https://curl.se/info
 <p class="level1">See also <a class="emphasis" href="#--data-urlencode">--data-urlencode</a> and <a class="emphasis" href="#-G">-G, --get</a>. Added in 7.87.0. </p>
 <p class="level0"><a name="--url"></a><span class="nroffip">--url &lt;url&gt;</span> </p>
 <p class="level1">Specify a URL to fetch. This option is mostly handy when you want to specify URL(s) in a config file. </p>
-<p class="level1">If the given URL is missing a scheme name (such as &quot;<a>http://</a>&quot; or &quot;<a>ftp://</a>&quot; etc) then curl will make a guess based on the host. If the outermost sub-domain name matches DICT, FTP, IMAP, LDAP, POP3 or SMTP then that protocol will be used, otherwise HTTP will be used. Since 7.45.0 guessing can be disabled by setting a default protocol, see <a class="emphasis" href="#--proto-default">--proto-default</a> for details. </p>
+<p class="level1">If the given URL is missing a scheme name (such as &quot;<a href="http://&quot;">http://&quot;</a> or &quot;<a href="ftp://&quot;">ftp://&quot;</a> etc) then curl will make a guess based on the host. If the outermost sub-domain name matches DICT, FTP, IMAP, LDAP, POP3 or SMTP then that protocol will be used, otherwise HTTP will be used. Since 7.45.0 guessing can be disabled by setting a default protocol, see <a class="emphasis" href="#--proto-default">--proto-default</a> for details. </p>
 <p class="level1">To control where this URL is written, use the <a class="emphasis" href="#-o">-o, --output</a> or the <a class="emphasis" href="#-O">-O, --remote-name</a> options. </p>
 <p class="level1"><span Class="bold">WARNING</span>: On Windows, particular file:// accesses can be converted to network accesses by the operating system. Beware! </p>
 <p class="level1"><a class="emphasis" href="#--url">--url</a> can be used several times in a command line </p>
 <p class="level1">Example: </p><pre class="level1">
 &nbsp;curl --url https://example.com
 </pre>
-<p class="level1">See also <a class="emphasis" href="#-:">-:, --next</a> and <a class="emphasis" href="#-K">-K, --config</a>. </p>
+<p class="level1">See also <a class="emphasis" href="#-">-:, --next</a> and <a class="emphasis" href="#-K">-K, --config</a>. </p>
 <p class="level0"><a name="-B"></a><span class="nroffip">-B, --use-ascii</span> </p>
 <p class="level1">(FTP LDAP) Enable ASCII transfer. For FTP, this can also be enforced by using a URL that ends with &quot;;type=A&quot;. This option causes data sent to stdout to be in text mode for win32 systems. </p>
 <p class="level1">Providing <a class="emphasis" href="#-B">-B, --use-ascii</a> multiple times has no extra effect. Disable it again with --no-use-ascii. </p>
@@ -3170,22 +3194,6 @@ curl https://curl.se/info
 </div>
 </div>
 <script defer src="https://www.fastly-insights.com/insights.js?k=8cb1247c-87c2-4af9-9229-768b1990f90b" type="text/javascript"></script>
-<!--<script src="/search-manpage.js" type="text/javascript"></script>-->
-
-<script>
- var cdn = "https://cdn.jsdelivr.net/gh/jhauga/curl-manpage/";
-
- // add css
- var docHead = document.head;
- var doccss = 
-   "<link rel='STYLESHEET' type='text/css' href='" +
-   cdn + "manpage-option-menu.css'>";
- docHead.innerHTML += doccss;  
-
- // add js
- var docScript = document.createElement("script");
- docScript.src = cdn + "search-manpage.js";
- document.body.appendChild(docScript);
-</script>
+<script src="/search-manpage.js" type="text/javascript"></script>
 </body>
 </html>
