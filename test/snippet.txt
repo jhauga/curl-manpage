@@ -1,3 +1,0 @@
-sed -i "s/var testOptionAnchors = 0/var testOptionAnchors = 1/" search-manpage.js
-
-sed -i "s/var testOptionAnchors = 1/var testOptionAnchors = 0/" search-manpage.js
