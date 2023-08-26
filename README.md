@@ -1,21 +1,22 @@
 # Curl Man Page Feature Request
 
-This repo is to serve as an illustration for <br/>
-a feature request in curl-www repo. It is a working <br/>
-mockup of a feature request for curl's manpage.html. <br/>
+This repo is to serve as an illustration for
+a feature request in curl-www repo. It is a working
+mockup of a feature request for curl's manpage.html. 
+The requested feature is a dropdown searchable menu 
+for all the options on curl's manpage as of: <br/>
 
-The requested feature is a dropdown searchanle menu <br/>
-for all the options on curl's manpage as of <br/>
-UNIX - curl 8.3.0-DEV (x86_64-pc-linux-gnu) libcurl/8.3.0-DEV. <br/>
-MacOS - curl 8.2.1 (x86_64-aple-darwin) libcurl/8.2.1 SecureTransport zlub/1.2.11 <br/>
+**UNIX** - curl 8.3.0-DEV (x86_64-pc-linux-gnu) libcurl/8.3.0-DEV. <br/>
+**MacOS** - curl 8.2.1 (x86_64-aple-darwin) libcurl/8.2.1 SecureTransport zlub/1.2.11 <br/>
 
-Ctrl + Click below to open page (*opens in current tab*):
+`Ctrl + click` links below to open pages:
 
-[curl-www manpage feature request](https://jhauga.github.io/curl-manpage/)
+[curl-www manpage feature request](https://jhauga.github.io/curl-manpage/) <br/>
+[console test curl-www manpage feature request](https://jhauga.github.io/curl-manpage/index-tested.html)
 
-The contents of the directory "curl-www-root" are the <br/>
-files in the pull request as they are located in the <br/>
-repo. Any appended text gives additional description. <br/>
+The contents of the directory "curl-www-root" are the
+files in the pull request as they are located in the 
+repo. Any appended text gives additional description.
 Below is the structure: </br>
 1. curl-www-root:
    - _manpage-option-menu.html
@@ -45,13 +46,14 @@ The test was configured by changing one variable in search-manpage.js after
 the local site was built. After configged for test the browsers were 
 opened, inspected, and exported (*.log files from console*) manually. <br/>
 Two items were tested: <br/>
-I. LOCAL BUILD
-II. LOCAL SITE TEST
+- I. LOCAL BUILD
+- II. LOCAL SITE TEST
+
 resulting in PASS or FAIL (*all PASS*).
 
 ## Details of Test Procefure
 Each local build was tested after the build as followed:
-1.`` php -S localhost:8000`` for serve locally.
+1. `` php -S localhost:8000`` for serve locally.
 2. Setting `` var testOptionAnchors = 1;`` in search-manpage.js
    - using `` sed -i "s/var testOptionAnchors = 0/var testOptionAnchors = 1/" search-manpage.js `` on all but MacOS
    - MacOS `` sed -i '' "s/var testOptionAnchors = 0/var testOptionAnchors = 1/" search-manpage.js ``
@@ -60,7 +62,7 @@ Each local build was tested after the build as followed:
    - See process in test/README.md for additional details.
      - test - *directory*
        - platform name - *directory*
-         - brewser-name-test-results.log
+         - browser-name-test-results.log
 
 Below are the results. The last nested item marks PASS or FAIL 
 for each list item,
