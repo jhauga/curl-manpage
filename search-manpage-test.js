@@ -239,7 +239,7 @@ to turn on tests. In order to test the browser must support console.log.
        E. Compare Values - the innerHTML vs extracted anchor link
      5. Delete or set variable "testOptionAnchors" back to 0 to turn off test.
 ***********************************************************************************/
-var testOptionAnchors = 0; // test is off by default
+var testOptionAnchors = 1; // test is off by default
 // Globals for test.
 var optionListItemInnerHTML, anchorHref, compareValues;
 function testTheOptionAnchors() {
