@@ -2,6 +2,9 @@
 
 # These were (pretty much) the steps to test the local builds for each OS.
 
+# Store current directory.
+_currentDirectory=$(pwd)
+
 # Update local repo with repo in feature request pull.
 echo Update curl-www repo? \[Y \\ n\]
 echo
@@ -9,7 +12,11 @@ read _updateCurlWWW
 
 # If yes clone repo jhauga/curl-www.git.
 if [ "$_updateCurlWWW" = "Y" ]; then
-	rm -rf curl-www && git clone https://github.com/jhauga/curl-www.git
+	if [ -z "$1" ]; then
+		rm -rf curl-www && git clone https://github.com/jhauga/curl-www.git
+	else
+		rm -rf curl-www && git clone -b "$1" https://github.com/jhauga/curl-www.git
+	fi
 fi
 
 # If curl repo from site or github needs to be updated.
@@ -22,15 +29,16 @@ if [ "$_updateCurl" = "Y" ]; then
 	echo Updating and rebuilding curl.
 	echo -----------------------------
 	echo
-	rm -rf /usr/local/lib/curl && git clone https://github.com/curl/curl.git
- 	cd curl
-  	autoreconf -fi
-   	./configure --without-ssl
-    	make
+	rm -rf /usr/local/lib/curl && git clone https://github.com/curl/curl.git /usr/local/lib/curl/
+	cd /usr/local/lib/curl
+	autoreconf -fi
+	./configure --without-ssl
+	make
+	cd "$_currentDirectory"
 fi
 
 # Ask to rebuild and serve local version of site.
-echo Build local version of repo? \[Y \\ n\]
+echo Build local version of site? \[Y \\ n\]
 echo
 read _buildLocalCurlWWW
 if [ "$_buildLocalCurlWWW" = "Y" ]; then
