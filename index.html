@@ -6,9 +6,8 @@
 <link rel="stylesheet" type="text/css" href="https://curl.se/curl.css">
 <link rel="shortcut icon" href="https://curl.se/favicon.ico">
 <link rel="icon" href="https://curl.se/logo/curl-symbol.svg" type="image/svg+xml">
-<link rel="alternate" type="application/rss+xml" title="cURL Releases" href="https://github.com/curl/curl/releases.atom">
+<!--<link rel="alternate" type="application/rss+xml" title="cURL Releases" href="https://github.com/curl/curl/releases.atom">-->
 <link rel="STYLESHEET" type="text/css" href="https://curl.se/manpage.css">
-<link rel="STYLESHEET" type="text/css" href="manpage-option-menu.css">
 </head>
 <body>
 <div class="main">
@@ -81,286 +80,357 @@
 </div>
 </div>
 <div class="contents">
-<!-- Option Search Menu -->
-<div id="manpage-option-menu" class="sideStay sideStayLeft inactive"
- data-to-side="1" data-on-side="0">
-<!-- On Off button -->
-  <button class="searchButtonToSide" id="searchButton"
-   onclick="toggleSearchButton(this.nextElementSibling, this)" data-onoff="0"
-   onmouseenter="buttonToSide(1, this.dataset.onoff)" data-to-Side="1"
-   onmouseleave="buttonToSide(0, this.dataset.onoff)">Show Options</button><br>
-  <div style="display:none">
-    <div class="searchBox">
-      <label for="optionSearchField">Search Options</label><br>
-      <img src="https://curl.se/logo/curl-symbol.svg" alt="curl symbol">
-      <input id="optionSearchField" name="optionSearchField" placeholder="search options"
-       type="search" oninput="searchOptions(this.value)">
+<!-- styles needed for option menu.  -->
+<style>
+/* Allocw current .menu class to use z-index propterty. */
+/* Enabling z-index puts option menu to back of top navigaiton menu. */
+ div.menu {
+     position: relative; /* enable z-index */
+     z-index: 2; /* puts nav menu in front of option menu */
+ }
+ /* Re-style option dropdown a bit. Mainly to a fixed position. */
+ div#opt-dropdown.dropdown {
+     position: fixed;
+     top: 0px;
+     left: 0px;
+     max-width: -webkit-fill-available;
+     min-width: 200px;
+     background-color: white;
+     font-size: 12pt;
+     text-align: center;
+     z-index: 1;
+ }
+ /* Allow padding for text "Options" - more readable. */
+ div#opt-dropdown div.dropbtn {
+     padding: 4px;
+ }
+ /* Hide checkbox elements. */
+ div#opt-dropdown.dropdown > .pinoptions {
+     display: none;
+     margin-top: 6px; /* make chcckbox less cramped, more readable */
+ }
+ /* Show checkbox .dropdown when hovered, and when checkbox is checked. */
+ div#opt-dropdown.dropdown:hover .pinoptions,
+ div#opt-dropdown.dropdown > input.pinoptions:checked,
+ div#opt-dropdown.dropdown > input.pinoptions:checked + label.pinoptions {
+     display: initial;
+ }
+ /* Hide resize instruction initially. */
+ div#opt-dropdown.dropdown div.dropdown-content small {
+     display: none;
+ }
+ /* Make options more readable. */
+ div#opt-dropdown.dropdown div.dropdown-content a {
+     font-size: 14pt;
+ }
+ /* Keep option menu expanded when checkbox checked, showing resize instrucitons. */
+ input.pinoptions:checked + label.pinoptions + div.dropdown-content,
+ div#opt-dropdown.dropdown input.pinoptions:checked + label.pinoptions + div.dropdown-content small {
+     display: block;
+ }
+ /* Restyle contents when checked to stay left, top into view, size, and allow resizing. */
+ input.pinoptions:checked + label.pinoptions + div.dropdown-content {
+     display: block;
+     top: 40px;
+     left: 0px;
+     margin-top: 10px;
+     resize: both;
+ }
+ /* Make .dropdown-content 95% of viewport height and scrollable. */
+ div#opt-dropdown.dropdown:hover div.dropdown-content,
+ input.pinoptions:checked + label.pinoptions + div.dropdown-content {
+     overflow-y: scroll;
+     max-height: 90vh; /* ensure browser shows bottom protion */
+     min-height: 100px;
+     max-width: 300px;
+ }
+ /* Add end marker puttting bottom options better in view. */
+ /* Also indicates end of option list. */
+ div#opt-dropdown.dropdown div.dropdown-content:after {
+     content: "_";
+     display: inline-block;
+     postion: relative;
+     height: 50px;
+     width: 100%;
+     margin-top: 10px;
+     margin-left: -5px;
+     border-right: 1px solid #0a3754;
+     background-color: white;
+     background-image: url("https://curl.se/logo/curl-logo.png");
+     background-repeat: no-repeat;
+     background-size: 50%;
+     background-position: 50% 10%;
+     color: white;
+ }
+</style>
+<!-- Start option menu. -->
+<div id="opt-dropdown" class="dropdown">
+ <div class="dropbtn">Options</div>
+ <input type="checkbox" class="pinoptions" id="pinoptions"> <!-- stay expanded when checked -->
+ <label class="pinoptions" for="pinoptions">Keep Expanded</label>
+  <div class="dropdown-content">
+   <small style="padding: 5px 0">Bottom right handle resizes.</small>
+      <hr> <!-- indicator for start of list that is parsed from template generated in makefile -->
+      <a href="#--abstract-unix-socket">--abstract-unix-socket</a>
+      <a href="#--alt-svc">--alt-svc</a>
+      <a href="#--anyauth">--anyauth</a>
+      <a href="#-a">-a, --append</a>
+      <a href="#--aws-sigv4">--aws-sigv4</a>
+      <a href="#--basic">--basic</a>
+      <a href="#--ca-native">--ca-native</a>
+      <a href="#--cacert">--cacert</a>
+      <a href="#--capath">--capath</a>
+      <a href="#--cert-status">--cert-status</a>
+      <a href="#--cert-type">--cert-type</a>
+      <a href="#-E">-E, --cert</a>
+      <a href="#--ciphers">--ciphers</a>
+      <a href="#--compressed-ssh">--compressed-ssh</a>
+      <a href="#--compressed">--compressed</a>
+      <a href="#-K">-K, --config</a>
+      <a href="#--connect-timeout">--connect-timeout</a>
+      <a href="#--connect-to">--connect-to</a>
+      <a href="#-C">-C, --continue-at</a>
+      <a href="#-c">-c, --cookie-jar</a>
+      <a href="#-b">-b, --cookie</a>
+      <a href="#--create-dirs">--create-dirs</a>
+      <a href="#--create-file-mode">--create-file-mode</a>
+      <a href="#--crlf">--crlf</a>
+      <a href="#--crlfile">--crlfile</a>
+      <a href="#--curves">--curves</a>
+      <a href="#--data-ascii">--data-ascii</a>
+      <a href="#--data-binary">--data-binary</a>
+      <a href="#--data-raw">--data-raw</a>
+      <a href="#--data-urlencode">--data-urlencode</a>
+      <a href="#-d">-d, --data</a>
+      <a href="#--delegation">--delegation</a>
+      <a href="#--digest">--digest</a>
+      <a href="#--disable-eprt">--disable-eprt</a>
+      <a href="#--disable-epsv">--disable-epsv</a>
+      <a href="#-q">-q, --disable</a>
+      <a href="#--disallow-username-in-url">--disallow-username-in-url</a>
+      <a href="#--dns-interface">--dns-interface</a>
+      <a href="#--dns-ipv4-addr">--dns-ipv4-addr</a>
+      <a href="#--dns-ipv6-addr">--dns-ipv6-addr</a>
+      <a href="#--dns-servers">--dns-servers</a>
+      <a href="#--doh-cert-status">--doh-cert-status</a>
+      <a href="#--doh-insecure">--doh-insecure</a>
+      <a href="#--doh-url">--doh-url</a>
+      <a href="#-D">-D, --dump-header</a>
+      <a href="#--egd-file">--egd-file</a>
+      <a href="#--engine">--engine</a>
+      <a href="#--etag-compare">--etag-compare</a>
+      <a href="#--etag-save">--etag-save</a>
+      <a href="#--expect100-timeout">--expect100-timeout</a>
+      <a href="#--fail-early">--fail-early</a>
+      <a href="#--fail-with-body">--fail-with-body</a>
+      <a href="#-f">-f, --fail</a>
+      <a href="#--false-start">--false-start</a>
+      <a href="#--form-escape">--form-escape</a>
+      <a href="#--form-string">--form-string</a>
+      <a href="#-F">-F, --form</a>
+      <a href="#--ftp-account">--ftp-account</a>
+      <a href="#--ftp-alternative-to-user">--ftp-alternative-to-user</a>
+      <a href="#--ftp-create-dirs">--ftp-create-dirs</a>
+      <a href="#--ftp-method">--ftp-method</a>
+      <a href="#--ftp-pasv">--ftp-pasv</a>
+      <a href="#-P">-P, --ftp-port</a>
+      <a href="#--ftp-pret">--ftp-pret</a>
+      <a href="#--ftp-skip-pasv-ip">--ftp-skip-pasv-ip</a>
+      <a href="#--ftp-ssl-ccc-mode">--ftp-ssl-ccc-mode</a>
+      <a href="#--ftp-ssl-ccc">--ftp-ssl-ccc</a>
+      <a href="#--ftp-ssl-control">--ftp-ssl-control</a>
+      <a href="#-G">-G, --get</a>
+      <a href="#-g">-g, --globoff</a>
+      <a href="#--happy-eyeballs-timeout-ms">--happy-eyeballs-timeout-ms</a>
+      <a href="#--haproxy-clientip">--haproxy-clientip</a>
+      <a href="#--haproxy-protocol">--haproxy-protocol</a>
+      <a href="#-I">-I, --head</a>
+      <a href="#-H">-H, --header</a>
+      <a href="#-h">-h, --help</a>
+      <a href="#--hostpubmd5">--hostpubmd5</a>
+      <a href="#--hostpubsha256">--hostpubsha256</a>
+      <a href="#--hsts">--hsts</a>
+      <a href="#--http09">--http0.9</a>
+      <a href="#-0">-0, --http1.0</a>
+      <a href="#--http11">--http1.1</a>
+      <a href="#--http2-prior-knowledge">--http2-prior-knowledge</a>
+      <a href="#--http2">--http2</a>
+      <a href="#--http3-only">--http3-only</a>
+      <a href="#--http3">--http3</a>
+      <a href="#--ignore-content-length">--ignore-content-length</a>
+      <a href="#-i">-i, --include</a>
+      <a href="#-k">-k, --insecure</a>
+      <a href="#--interface">--interface</a>
+      <a href="#-4">-4, --ipv4</a>
+      <a href="#-6">-6, --ipv6</a>
+      <a href="#--json">--json</a>
+      <a href="#-j">-j, --junk-session-cookies</a>
+      <a href="#--keepalive-time">--keepalive-time</a>
+      <a href="#--key-type">--key-type</a>
+      <a href="#--key">--key</a>
+      <a href="#--krb">--krb</a>
+      <a href="#--libcurl">--libcurl</a>
+      <a href="#--limit-rate">--limit-rate</a>
+      <a href="#-l">-l, --list-only</a>
+      <a href="#--local-port">--local-port</a>
+      <a href="#--location-trusted">--location-trusted</a>
+      <a href="#-L">-L, --location</a>
+      <a href="#--login-options">--login-options</a>
+      <a href="#--mail-auth">--mail-auth</a>
+      <a href="#--mail-from">--mail-from</a>
+      <a href="#--mail-rcpt-allowfails">--mail-rcpt-allowfails</a>
+      <a href="#--mail-rcpt">--mail-rcpt</a>
+      <a href="#-M">-M, --manual</a>
+      <a href="#--max-filesize">--max-filesize</a>
+      <a href="#--max-redirs">--max-redirs</a>
+      <a href="#-m">-m, --max-time</a>
+      <a href="#--metalink">--metalink</a>
+      <a href="#--negotiate">--negotiate</a>
+      <a href="#--netrc-file">--netrc-file</a>
+      <a href="#--netrc-optional">--netrc-optional</a>
+      <a href="#-n">-n, --netrc</a>
+      <a href="#-:">-:, --next</a>
+      <a href="#--no-alpn">--no-alpn</a>
+      <a href="#-N">-N, --no-buffer</a>
+      <a href="#--no-clobber">--no-clobber</a>
+      <a href="#--no-keepalive">--no-keepalive</a>
+      <a href="#--no-npn">--no-npn</a>
+      <a href="#--no-progress-meter">--no-progress-meter</a>
+      <a href="#--no-sessionid">--no-sessionid</a>
+      <a href="#--noproxy">--noproxy</a>
+      <a href="#--ntlm-wb">--ntlm-wb</a>
+      <a href="#--ntlm">--ntlm</a>
+      <a href="#--oauth2-bearer">--oauth2-bearer</a>
+      <a href="#--output-dir">--output-dir</a>
+      <a href="#-o">-o, --output</a>
+      <a href="#--parallel-immediate">--parallel-immediate</a>
+      <a href="#--parallel-max">--parallel-max</a>
+      <a href="#-Z">-Z, --parallel</a>
+      <a href="#--pass">--pass</a>
+      <a href="#--path-as-is">--path-as-is</a>
+      <a href="#--pinnedpubkey">--pinnedpubkey</a>
+      <a href="#--post301">--post301</a>
+      <a href="#--post302">--post302</a>
+      <a href="#--post303">--post303</a>
+      <a href="#--preproxy">--preproxy</a>
+      <a href="#-#">-#, --progress-bar</a>
+      <a href="#--proto-default">--proto-default</a>
+      <a href="#--proto-redir">--proto-redir</a>
+      <a href="#--proto">--proto</a>
+      <a href="#--proxy-anyauth">--proxy-anyauth</a>
+      <a href="#--proxy-basic">--proxy-basic</a>
+      <a href="#--proxy-ca-native">--proxy-ca-native</a>
+      <a href="#--proxy-cacert">--proxy-cacert</a>
+      <a href="#--proxy-capath">--proxy-capath</a>
+      <a href="#--proxy-cert-type">--proxy-cert-type</a>
+      <a href="#--proxy-cert">--proxy-cert</a>
+      <a href="#--proxy-ciphers">--proxy-ciphers</a>
+      <a href="#--proxy-crlfile">--proxy-crlfile</a>
+      <a href="#--proxy-digest">--proxy-digest</a>
+      <a href="#--proxy-header">--proxy-header</a>
+      <a href="#--proxy-http2">--proxy-http2</a>
+      <a href="#--proxy-insecure">--proxy-insecure</a>
+      <a href="#--proxy-key-type">--proxy-key-type</a>
+      <a href="#--proxy-key">--proxy-key</a>
+      <a href="#--proxy-negotiate">--proxy-negotiate</a>
+      <a href="#--proxy-ntlm">--proxy-ntlm</a>
+      <a href="#--proxy-pass">--proxy-pass</a>
+      <a href="#--proxy-pinnedpubkey">--proxy-pinnedpubkey</a>
+      <a href="#--proxy-service-name">--proxy-service-name</a>
+      <a href="#--proxy-ssl-allow-beast">--proxy-ssl-allow-beast</a>
+      <a href="#--proxy-ssl-auto-client-cert">--proxy-ssl-auto-client-cert</a>
+      <a href="#--proxy-tls13-ciphers">--proxy-tls13-ciphers</a>
+      <a href="#--proxy-tlsauthtype">--proxy-tlsauthtype</a>
+      <a href="#--proxy-tlspassword">--proxy-tlspassword</a>
+      <a href="#--proxy-tlsuser">--proxy-tlsuser</a>
+      <a href="#--proxy-tlsv1">--proxy-tlsv1</a>
+      <a href="#-U">-U, --proxy-user</a>
+      <a href="#-x">-x, --proxy</a>
+      <a href="#--proxy10">--proxy1.0</a>
+      <a href="#-p">-p, --proxytunnel</a>
+      <a href="#--pubkey">--pubkey</a>
+      <a href="#-Q">-Q, --quote</a>
+      <a href="#--random-file">--random-file</a>
+      <a href="#-r">-r, --range</a>
+      <a href="#--rate">--rate</a>
+      <a href="#--raw">--raw</a>
+      <a href="#-e">-e, --referer</a>
+      <a href="#-J">-J, --remote-header-name</a>
+      <a href="#--remote-name-all">--remote-name-all</a>
+      <a href="#-O">-O, --remote-name</a>
+      <a href="#-R">-R, --remote-time</a>
+      <a href="#--remove-on-error">--remove-on-error</a>
+      <a href="#--request-target">--request-target</a>
+      <a href="#-X">-X, --request</a>
+      <a href="#--resolve">--resolve</a>
+      <a href="#--retry-all-errors">--retry-all-errors</a>
+      <a href="#--retry-connrefused">--retry-connrefused</a>
+      <a href="#--retry-delay">--retry-delay</a>
+      <a href="#--retry-max-time">--retry-max-time</a>
+      <a href="#--retry">--retry</a>
+      <a href="#--sasl-authzid">--sasl-authzid</a>
+      <a href="#--sasl-ir">--sasl-ir</a>
+      <a href="#--service-name">--service-name</a>
+      <a href="#-S">-S, --show-error</a>
+      <a href="#-s">-s, --silent</a>
+      <a href="#--socks4">--socks4</a>
+      <a href="#--socks4a">--socks4a</a>
+      <a href="#--socks5-basic">--socks5-basic</a>
+      <a href="#--socks5-gssapi-nec">--socks5-gssapi-nec</a>
+      <a href="#--socks5-gssapi-service">--socks5-gssapi-service</a>
+      <a href="#--socks5-gssapi">--socks5-gssapi</a>
+      <a href="#--socks5-hostname">--socks5-hostname</a>
+      <a href="#--socks5">--socks5</a>
+      <a href="#-Y">-Y, --speed-limit</a>
+      <a href="#-y">-y, --speed-time</a>
+      <a href="#--ssl-allow-beast">--ssl-allow-beast</a>
+      <a href="#--ssl-auto-client-cert">--ssl-auto-client-cert</a>
+      <a href="#--ssl-no-revoke">--ssl-no-revoke</a>
+      <a href="#--ssl-reqd">--ssl-reqd</a>
+      <a href="#--ssl-revoke-best-effort">--ssl-revoke-best-effort</a>
+      <a href="#--ssl">--ssl</a>
+      <a href="#-2">-2, --sslv2</a>
+      <a href="#-3">-3, --sslv3</a>
+      <a href="#--stderr">--stderr</a>
+      <a href="#--styled-output">--styled-output</a>
+      <a href="#--suppress-connect-headers">--suppress-connect-headers</a>
+      <a href="#--tcp-fastopen">--tcp-fastopen</a>
+      <a href="#--tcp-nodelay">--tcp-nodelay</a>
+      <a href="#-t">-t, --telnet-option</a>
+      <a href="#--tftp-blksize">--tftp-blksize</a>
+      <a href="#--tftp-no-options">--tftp-no-options</a>
+      <a href="#-z">-z, --time-cond</a>
+      <a href="#--tls-max">--tls-max</a>
+      <a href="#--tls13-ciphers">--tls13-ciphers</a>
+      <a href="#--tlsauthtype">--tlsauthtype</a>
+      <a href="#--tlspassword">--tlspassword</a>
+      <a href="#--tlsuser">--tlsuser</a>
+      <a href="#--tlsv10">--tlsv1.0</a>
+      <a href="#--tlsv11">--tlsv1.1</a>
+      <a href="#--tlsv12">--tlsv1.2</a>
+      <a href="#--tlsv13">--tlsv1.3</a>
+      <a href="#-1">-1, --tlsv1</a>
+      <a href="#--tr-encoding">--tr-encoding</a>
+      <a href="#--trace-ascii">--trace-ascii</a>
+      <a href="#--trace-config">--trace-config</a>
+      <a href="#--trace-ids">--trace-ids</a>
+      <a href="#--trace-time">--trace-time</a>
+      <a href="#--trace">--trace</a>
+      <a href="#--unix-socket">--unix-socket</a>
+      <a href="#-T">-T, --upload-file</a>
+      <a href="#--url-query">--url-query</a>
+      <a href="#--url">--url</a>
+      <a href="#-B">-B, --use-ascii</a>
+      <a href="#-A">-A, --user-agent</a>
+      <a href="#-u">-u, --user</a>
+      <a href="#--variable">--variable</a>
+      <a href="#-v">-v, --verbose</a>
+      <a href="#-V">-V, --version</a>
+      <a href="#-w">-w, --write-out</a>
+      <a href="#--xattr">--xattr</a>
+      <!-- 257 options generated -->
     </div>
-    <ul id="optionMenu">
-      <!-- Start option list -->
-      <div id="fullOptionList" style="display:none">
-        <li><a href="#">--abstract-unix-socket</a></li>
-        <li><a href="#">--alt-svc</a></li>
-        <li><a href="#">--anyauth</a></li>
-        <li><a href="#">-a, --append</a></li>
-        <li><a href="#">--aws-sigv4</a></li>
-        <li><a href="#">--basic</a></li>
-        <li><a href="#">--ca-native</a></li>
-        <li><a href="#">--cacert</a></li>
-        <li><a href="#">--capath</a></li>
-        <li><a href="#">-E, --cert</a></li>
-        <li><a href="#">--cert-status</a></li>
-        <li><a href="#">--cert-type</a></li>
-        <li><a href="#">--ciphers</a></li>
-        <li><a href="#">--compressed</a></li>
-        <li><a href="#">--compressed-ssh</a></li>
-        <li><a href="#">-K, --config</a></li>
-        <li><a href="#">--connect-timeout</a></li>
-        <li><a href="#">--connect-to</a></li>
-        <li><a href="#">-C, --continue-at</a></li>
-        <li><a href="#">-b, --cookie</a></li>
-        <li><a href="#">-c, --cookie-jar</a></li>
-        <li><a href="#">--create-dirs</a></li>
-        <li><a href="#">--create-file-mode</a></li>
-        <li><a href="#">--crlf</a></li>
-        <li><a href="#">--crlfile</a></li>
-        <li><a href="#">--curves</a></li>
-        <li><a href="#">-d, --data</a></li>
-        <li><a href="#">--data-ascii</a></li>
-        <li><a href="#">--data-binary</a></li>
-        <li><a href="#">--data-raw</a></li>
-        <li><a href="#">--data-urlencode</a></li>
-        <li><a href="#">--delegation</a></li>
-        <li><a href="#">--digest</a></li>
-        <li><a href="#">-q, --disable</a></li>
-        <li><a href="#">--disable-eprt</a></li>
-        <li><a href="#">--disable-epsv</a></li>
-        <li><a href="#">--disallow-username-in-url</a></li>
-        <li><a href="#">--dns-interface</a></li>
-        <li><a href="#">--dns-ipv4-addr</a></li>
-        <li><a href="#">--dns-ipv6-addr</a></li>
-        <li><a href="#">--dns-servers</a></li>
-        <li><a href="#">--doh-cert-status</a></li>
-        <li><a href="#">--doh-insecure</a></li>
-        <li><a href="#">--doh-url</a></li>
-        <li><a href="#">-D, --dump-header</a></li>
-        <li><a href="#">--egd-file</a></li>
-        <li><a href="#">--engine</a></li>
-        <li><a href="#">--etag-compare</a></li>
-        <li><a href="#">--etag-save</a></li>
-        <li><a href="#">--expect100-timeout</a></li>
-        <li><a href="#">-f, --fail</a></li>
-        <li><a href="#">--fail-early</a></li>
-        <li><a href="#">--fail-with-body</a></li>
-        <li><a href="#">--false-start</a></li>
-        <li><a href="#">-F, --form</a></li>
-        <li><a href="#">--form-escape</a></li>
-        <li><a href="#">--form-string</a></li>
-        <li><a href="#">--ftp-account</a></li>
-        <li><a href="#">--ftp-alternative-to-user</a></li>
-        <li><a href="#">--ftp-create-dirs</a></li>
-        <li><a href="#">--ftp-method</a></li>
-        <li><a href="#">--ftp-pasv</a></li>
-        <li><a href="#">-P, --ftp-port</a></li>
-        <li><a href="#">--ftp-pret</a></li>
-        <li><a href="#">--ftp-skip-pasv-ip</a></li>
-        <li><a href="#">--ftp-ssl-ccc</a></li>
-        <li><a href="#">--ftp-ssl-ccc-mode</a></li>
-        <li><a href="#">--ftp-ssl-control</a></li>
-        <li><a href="#">-G, --get</a></li>
-        <li><a href="#">-g, --globoff</a></li>
-        <li><a href="#">--happy-eyeballs-timeout-ms</a></li>
-        <li><a href="#">--haproxy-clientip</a></li>
-        <li><a href="#">--haproxy-protocol</a></li>
-        <li><a href="#">-I, --head</a></li>
-        <li><a href="#">-H, --header</a></li>
-        <li><a href="#">-h, --help</a></li>
-        <li><a href="#">--hostpubmd5</a></li>
-        <li><a href="#">--hostpubsha256</a></li>
-        <li><a href="#">--hsts</a></li>
-        <li><a href="#">--http0.9</a></li>
-        <li><a href="#">-0, --http1.0</a></li>
-        <li><a href="#">--http1.1</a></li>
-        <li><a href="#">--http2</a></li>
-        <li><a href="#">--http2-prior-knowledge</a></li>
-        <li><a href="#">--http3</a></li>
-        <li><a href="#">--http3-only</a></li>
-        <li><a href="#">--ignore-content-length</a></li>
-        <li><a href="#">-i, --include</a></li>
-        <li><a href="#">-k, --insecure</a></li>
-        <li><a href="#">--interface</a></li>
-        <li><a href="#">-4, --ipv4</a></li>
-        <li><a href="#">-6, --ipv6</a></li>
-        <li><a href="#">--json</a></li>
-        <li><a href="#">-j, --junk-session-cookies</a></li>
-        <li><a href="#">--keepalive-time</a></li>
-        <li><a href="#">--key</a></li>
-        <li><a href="#">--key-type</a></li>
-        <li><a href="#">--krb</a></li>
-        <li><a href="#">--libcurl</a></li>
-        <li><a href="#">--limit-rate</a></li>
-        <li><a href="#">-l, --list-only</a></li>
-        <li><a href="#">--local-port</a></li>
-        <li><a href="#">-L, --location</a></li>
-        <li><a href="#">--location-trusted</a></li>
-        <li><a href="#">--login-options</a></li>
-        <li><a href="#">--mail-auth</a></li>
-        <li><a href="#">--mail-from</a></li>
-        <li><a href="#">--mail-rcpt</a></li>
-        <li><a href="#">--mail-rcpt-allowfails</a></li>
-        <li><a href="#">-M, --manual</a></li>
-        <li><a href="#">--max-filesize</a></li>
-        <li><a href="#">--max-redirs</a></li>
-        <li><a href="#">-m, --max-time</a></li>
-        <li><a href="#">--metalink</a></li>
-        <li><a href="#">--negotiate</a></li>
-        <li><a href="#">-n, --netrc</a></li>
-        <li><a href="#">--netrc-file</a></li>
-        <li><a href="#">--netrc-optional</a></li>
-        <li><a href="#">-:, --next</a></li>
-        <li><a href="#">--no-alpn</a></li>
-        <li><a href="#">-N, --no-buffer</a></li>
-        <li><a href="#">--no-clobber</a></li>
-        <li><a href="#">--no-keepalive</a></li>
-        <li><a href="#">--no-npn</a></li>
-        <li><a href="#">--no-progress-meter</a></li>
-        <li><a href="#">--no-sessionid</a></li>
-        <li><a href="#">--noproxy</a></li>
-        <li><a href="#">--ntlm</a></li>
-        <li><a href="#">--ntlm-wb</a></li>
-        <li><a href="#">--oauth2-bearer</a></li>
-        <li><a href="#">-o, --output</a></li>
-        <li><a href="#">--output-dir</a></li>
-        <li><a href="#">-Z, --parallel</a></li>
-        <li><a href="#">--parallel-immediate</a></li>
-        <li><a href="#">--parallel-max</a></li>
-        <li><a href="#">--pass</a></li>
-        <li><a href="#">--path-as-is</a></li>
-        <li><a href="#">--pinnedpubkey</a></li>
-        <li><a href="#">--post301</a></li>
-        <li><a href="#">--post302</a></li>
-        <li><a href="#">--post303</a></li>
-        <li><a href="#">--preproxy</a></li>
-        <li><a href="#">-#, --progress-bar</a></li>
-        <li><a href="#">--proto</a></li>
-        <li><a href="#">--proto-default</a></li>
-        <li><a href="#">--proto-redir</a></li>
-        <li><a href="#">-x, --proxy</a></li>
-        <li><a href="#">--proxy-anyauth</a></li>
-        <li><a href="#">--proxy-basic</a></li>
-        <li><a href="#">--proxy-ca-native</a></li>
-        <li><a href="#">--proxy-cacert</a></li>
-        <li><a href="#">--proxy-capath</a></li>
-        <li><a href="#">--proxy-cert</a></li>
-        <li><a href="#">--proxy-cert-type</a></li>
-        <li><a href="#">--proxy-ciphers</a></li>
-        <li><a href="#">--proxy-crlfile</a></li>
-        <li><a href="#">--proxy-digest</a></li>
-        <li><a href="#">--proxy-header</a></li>
-        <li><a href="#">--proxy-http2</a></li>
-        <li><a href="#">--proxy-insecure</a></li>
-        <li><a href="#">--proxy-key</a></li>
-        <li><a href="#">--proxy-key-type</a></li>
-        <li><a href="#">--proxy-negotiate</a></li>
-        <li><a href="#">--proxy-ntlm</a></li>
-        <li><a href="#">--proxy-pass</a></li>
-        <li><a href="#">--proxy-pinnedpubkey</a></li>
-        <li><a href="#">--proxy-service-name</a></li>
-        <li><a href="#">--proxy-ssl-allow-beast</a></li>
-        <li><a href="#">--proxy-ssl-auto-client-cert</a></li>
-        <li><a href="#">--proxy-tls13-ciphers</a></li>
-        <li><a href="#">--proxy-tlsauthtype</a></li>
-        <li><a href="#">--proxy-tlspassword</a></li>
-        <li><a href="#">--proxy-tlsuser</a></li>
-        <li><a href="#">--proxy-tlsv1</a></li>
-        <li><a href="#">-U, --proxy-user</a></li>
-        <li><a href="#">--proxy1.0</a></li>
-        <li><a href="#">-p, --proxytunnel</a></li>
-        <li><a href="#">--pubkey</a></li>
-        <li><a href="#">-Q, --quote</a></li>
-        <li><a href="#">--random-file</a></li>
-        <li><a href="#">-r, --range</a></li>
-        <li><a href="#">--rate</a></li>
-        <li><a href="#">--raw</a></li>
-        <li><a href="#">-e, --referer</a></li>
-        <li><a href="#">-J, --remote-header-name</a></li>
-        <li><a href="#">-O, --remote-name</a></li>
-        <li><a href="#">--remote-name-all</a></li>
-        <li><a href="#">-R, --remote-time</a></li>
-        <li><a href="#">--remove-on-error</a></li>
-        <li><a href="#">-X, --request</a></li>
-        <li><a href="#">--request-target</a></li>
-        <li><a href="#">--resolve</a></li>
-        <li><a href="#">--retry</a></li>
-        <li><a href="#">--retry-all-errors</a></li>
-        <li><a href="#">--retry-connrefused</a></li>
-        <li><a href="#">--retry-delay</a></li>
-        <li><a href="#">--retry-max-time</a></li>
-        <li><a href="#">--sasl-authzid</a></li>
-        <li><a href="#">--sasl-ir</a></li>
-        <li><a href="#">--service-name</a></li>
-        <li><a href="#">-S, --show-error</a></li>
-        <li><a href="#">-s, --silent</a></li>
-        <li><a href="#">--socks4</a></li>
-        <li><a href="#">--socks4a</a></li>
-        <li><a href="#">--socks5</a></li>
-        <li><a href="#">--socks5-basic</a></li>
-        <li><a href="#">--socks5-gssapi</a></li>
-        <li><a href="#">--socks5-gssapi-nec</a></li>
-        <li><a href="#">--socks5-gssapi-service</a></li>
-        <li><a href="#">--socks5-hostname</a></li>
-        <li><a href="#">-Y, --speed-limit</a></li>
-        <li><a href="#">-y, --speed-time</a></li>
-        <li><a href="#">--ssl</a></li>
-        <li><a href="#">--ssl-allow-beast</a></li>
-        <li><a href="#">--ssl-auto-client-cert</a></li>
-        <li><a href="#">--ssl-no-revoke</a></li>
-        <li><a href="#">--ssl-reqd</a></li>
-        <li><a href="#">--ssl-revoke-best-effort</a></li>
-        <li><a href="#">-2, --sslv2</a></li>
-        <li><a href="#">-3, --sslv3</a></li>
-        <li><a href="#">--stderr</a></li>
-        <li><a href="#">--styled-output</a></li>
-        <li><a href="#">--suppress-connect-headers</a></li>
-        <li><a href="#">--tcp-fastopen</a></li>
-        <li><a href="#">--tcp-nodelay</a></li>
-        <li><a href="#">-t, --telnet-option</a></li>
-        <li><a href="#">--tftp-blksize</a></li>
-        <li><a href="#">--tftp-no-options</a></li>
-        <li><a href="#">-z, --time-cond</a></li>
-        <li><a href="#">--tls-max</a></li>
-        <li><a href="#">--tls13-ciphers</a></li>
-        <li><a href="#">--tlsauthtype</a></li>
-        <li><a href="#">--tlspassword</a></li>
-        <li><a href="#">--tlsuser</a></li>
-        <li><a href="#">-1, --tlsv1</a></li>
-        <li><a href="#">--tlsv1.0</a></li>
-        <li><a href="#">--tlsv1.1</a></li>
-        <li><a href="#">--tlsv1.2</a></li>
-        <li><a href="#">--tlsv1.3</a></li>
-        <li><a href="#">--tr-encoding</a></li>
-        <li><a href="#">--trace</a></li>
-        <li><a href="#">--trace-ascii</a></li>
-        <li><a href="#">--trace-config</a></li>
-        <li><a href="#">--trace-ids</a></li>
-        <li><a href="#">--trace-time</a></li>
-        <li><a href="#">--unix-socket</a></li>
-        <li><a href="#">-T, --upload-file</a></li>
-        <li><a href="#">--url</a></li>
-        <li><a href="#">--url-query</a></li>
-        <li><a href="#">-B, --use-ascii</a></li>
-        <li><a href="#">-u, --user</a></li>
-        <li><a href="#">-A, --user-agent</a></li>
-        <li><a href="#">--variable</a></li>
-        <li><a href="#">-v, --verbose</a></li>
-        <li><a href="#">-V, --version</a></li>
-        <li><a href="#">-w, --write-out</a></li>
-        <li><a href="#">--xattr</a></li>
-      </div>
-    </ul>
   </div>
-</div>
-<div class="manpage">
 <div class="where"><a href="https://curl.se/">curl</a> / <a href="https://curl.se/docs/">Docs</a> / <a href="https://curl.se/docs/tooldocs.html">Tool</a> / <b>Man Page</b></div>
 <h1> curl.1 the man page </h1>
 <div class="relatedbox">
@@ -836,7 +906,8 @@
 </pre>
 <p class="level1">See also <a class="emphasis" href="#--disable-eprt">--disable-eprt</a> and <a class="emphasis" href="#-P">-P, --ftp-port</a>. </p>
 <p class="level0"><a name="-q"></a><span class="nroffip">-q, --disable</span> </p>
-<p class="level1">If used as the first parameter on the command line, the <span Class="emphasis">curlrc</span> config file will not be read and used. See the <a class="emphasis" href="#-K">-K, --config</a> for details on the default config file search path. </p>
+<p class="level1">If used as the <span Class="bold">first</span> parameter on the command line, the <span Class="emphasis">curlrc</span> config file will not be read and used. See the <a class="emphasis" href="#-K">-K, --config</a> for details on the default config file search path. </p>
+<p class="level1">Prior to 7.50.0 curl supported the short option name <span Class="emphasis">q</span> but not the long option name <span Class="emphasis">disable</span>. </p>
 <p class="level1">Providing <a class="emphasis" href="#-q">-q, --disable</a> multiple times has no extra effect. Disable it again with --no-disable. </p>
 <p class="level1">Example: </p><pre class="level1">
 &nbsp;curl -q https://example.com
@@ -3245,11 +3316,8 @@
 <p class="level0"><a href="https://curl.se">https://curl.se</a> </p><a name="SEE"></a><h2 class="nroffsh">See also</h2>
 <p class="level0"><span Class="bold">ftp</span>(1), <span Class="bold">wget</span>(1) </p><p class="roffit">
  This HTML page was made with <a href="http://daniel.haxx.se/projects/roffit/">roffit</a>.
-<!-- close div.manpage -->
-</div>
 </div>
 </div>
 <script defer src="https://www.fastly-insights.com/insights.js?k=8cb1247c-87c2-4af9-9229-768b1990f90b" type="text/javascript"></script>
-<script src="search-manpage.js" type="text/javascript"></script>
 </body>
 </html>
