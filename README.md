@@ -9,26 +9,30 @@ for all the options on curl's manpage as of: <br/>
 **UNIX** - curl 8.3.0-DEV (x86_64-pc-linux-gnu) libcurl/8.3.0-DEV. <br/>
 **MacOS** - curl 8.2.1 (x86_64-aple-darwin) libcurl/8.2.1 SecureTransport zlub/1.2.11 <br/>
 
-`Ctrl + click` links below to open pages:
+`Ctrl + click` links below to open example page:
 
 [curl-www manpage feature request](https://jhauga.github.io/curl-manpage/) <br/>
+
+
+![option menu demo video](example-video.gif)
 
 The contents of the directory "curl-www-docs" are the
 files in the pull request as they are located in the 
 repo. Any appended text gives additional description.
 Below is the structure: </br>
-  - curl-www-docs:
-    1. _option-menu.html
-       - created with generatemanmenu.pl        
-    2. generatemanmenu.pl
-       - builds manoptionsdump.gen
-    3. - _manpage.html 
-       - edited to include _option-menu.html and manoptionsdump.gen
-    4. Makefile
-       - edited adding target manoptionsdump.gen that is called in manpage.html
-       - manoptionsdump.gen creates file "manoptionsdump.gen" that holds options.
-    5. manoptionsdump.gen
-       - created using perl script generatemanmenu.pl         
+
+**curl-www-docs/**:
+1. _manpage.html 
+   - edited to include _option-menu.html and manoptionsdump.gen    
+2. _option-menu.html
+   - template for option menu
+3. generatemanmenu.pl
+   - builds manoptionsdump.gen
+4. Makefile
+   - edited adding target manoptionsdump.gen that is called in manpage.html
+   - manoptionsdump.gen creates file "manoptionsdump.gen" that holds options.
+5. manoptionsdump.gen
+   - created using perl script generatemanmenu.pl         
 
 # Testing Local Website Builds
 Included is the file that built and served local test ``build-test.sh``. 
@@ -41,18 +45,18 @@ Two items were tested: <br/>
 
 ## Details of Test Procefure
 Each local build was tested after the build as followed:
-1. `` php -S localhost:8000`` for serve locally.
+1. `` php -S localhost:8000`` for serving locally.
 2. Manual Steps:
    - Open browser, scrolled, hovered, check "Keep Expanded", resize to minimum, uncheck, and mouseout.
 
-Below are the results. The last nested item marks PASS or FAIL 
-for each list item,
-### I. LOCAL BUILD - Local Build and Tests.
+Below are the test results. 
+
+### I. LOCAL BUILD - Local Site Build
 The website was built locally using:
 1. Ubuntu on Windows 10
    - PASS
 2. Ubuntu on Windows 11
-   - 
+   - PASS
 3. Ubuntu Desktop
    - PASS
 4. Mac OS BigSur version 11.6
@@ -77,12 +81,12 @@ The website was built locally using:
    - Comodo Dragon: 114.0.5735.99 (64-bit)
      - PASS
 2. Windows 11:
-   - Google Chrome: 116.0.5845.111 (Official Build) (64-bit)
-     - 
-   - Microsoft Edge: 116.0.1938.54 (Official build) (64-bit)
-     - 
-   - Firefox: 116.0.3 (64-bit)
-     - 
+   - Google Chrome: 116.0.5845.112 (Official Build) (64-bit)
+     - PASS
+   - Microsoft Edge: 116.0.1938.69 (Official build) (64-bit)
+     - PASS
+   - Firefox: 117.0 (64-bit)
+     - PASS
 3. Ubuntu Desktop:
    - Firefox: 117.0 (64-bit)
      - PASS
