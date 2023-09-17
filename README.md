@@ -9,10 +9,10 @@ for all the options on curl's manpage as of: <br/>
 **UNIX** - curl 8.3.0-DEV (x86_64-pc-linux-gnu) libcurl/8.3.0-DEV. <br/>
 **MacOS** - curl 8.2.1 (x86_64-aple-darwin) libcurl/8.2.1 SecureTransport zlub/1.2.11 <br/>
 
-`Ctrl + click` links below to open pages:
+`Ctrl + click` link below to open preview page:
 
-[curl-www manpage feature request](https://jhauga.github.io/curl-manpage/) <br/>
-[console test curl-www manpage feature request](https://jhauga.github.io/curl-manpage/index-tested.html)
+[curl-www manpage feature request](https://jhauga.github.io/htmlpreview.github.com/?https://github.com/jhauga/curl-manpage/blob/js-option-menu-test/index.html) <br/>
+<!-- [console test curl-www manpage feature request](https://jhauga.github.io/htmlpreview.github.com/?https://github.com/jhauga/curl-manpage/blob/js-option-menu-test/index.html) -->
 
 The contents of the directory "curl-www-root" are the
 files in the pull request as they are located in the 
