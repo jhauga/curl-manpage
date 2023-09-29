@@ -11,7 +11,8 @@ for all the options on curl's manpage as of: <br/>
 
 `Ctrl + click` links below to open example page:
 
-[curl-www manpage feature request](https://jhauga.github.io/curl-manpage/) <br/>
+<!-- [curl-www manpage feature request](https://jhauga.github.io/curl-manpage/) <br/> -->
+[curl-www manpage feature request](https://jhauga.github.io/htmlpreview.github.com/?https://github.com/jhauga/curl-manpage/blob/main/index.html) <br/> 
 
 
 ![option menu demo video](example-video.gif)
