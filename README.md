@@ -11,7 +11,9 @@ for all the options on curl's manpage as of: <br/>
 
 `Ctrl + click` link below to open preview page:
 
-[curl-www manpage feature request](https://jhauga.github.io/htmlpreview.github.com/?https://github.com/jhauga/curl-manpage/blob/js-option-menu-test/index.html) <br/>
+[curl-www manpage feature request](https://jhauga.github.io/curl-manpage/) <br/>
+
+<!-- [curl-www manpage feature request](https://jhauga.github.io/htmlpreview.github.com/?https://github.com/jhauga/curl-manpage/blob/js-option-menu-test/index.html) <br/> -->
 <!-- [console test curl-www manpage feature request](https://jhauga.github.io/htmlpreview.github.com/?https://github.com/jhauga/curl-manpage/blob/js-option-menu-test/index.html) -->
 
 The contents of the directory "curl-www-root" are the
