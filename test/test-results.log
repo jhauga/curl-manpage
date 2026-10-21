@@ -1,0 +1,24 @@
+This page is in Almost Standards Mode. Page layout may be impacted. For Standards Mode use “<!DOCTYPE html>”. manpage.html
+The script from “https://www.fastly-insights.com/insights.js?k=8cb1247c-87c2-4af9-9229-768b1990f90b” was loaded even though its MIME type (“text/html”) is not a valid JavaScript MIME type. manpage.html
+*********************************************************************** search-manpage.js:249:15
+****************************STARTING TEST****************************** search-manpage.js:250:15
+
+search-manpage.js:251:15
+A. Option Count - 255 search-manpage.js:321:11
+B. Option innerHTML: search-manpage.js:322:11
+Array(255) [ "--abstract-unix-socket", "--alt-svc", "--anyauth", "-a, --append", "--aws-sigv4", "--basic", "--ca-native", "--cacert", "--capath", "-E, --cert", … ]
+search-manpage.js:323:11
+*********************************************************************** search-manpage.js:258:15
+C. Full Option href Value: search-manpage.js:326:11
+Array(255) [ "http://localhost:8000/docs/manpage.html#--abstract-unix-socket", "http://localhost:8000/docs/manpage.html#--alt-svc", "http://localhost:8000/docs/manpage.html#--anyauth", "http://localhost:8000/docs/manpage.html#-a", "http://localhost:8000/docs/manpage.html#--aws-sigv4", "http://localhost:8000/docs/manpage.html#--basic", "http://localhost:8000/docs/manpage.html#--ca-native", "http://localhost:8000/docs/manpage.html#--cacert", "http://localhost:8000/docs/manpage.html#--capath", "http://localhost:8000/docs/manpage.html#-E", … ]
+search-manpage.js:327:11
+*********************************************************************** search-manpage.js:258:15
+D. Test Result - search-manpage.js:330:11
+PASS search-manpage.js:331:11
+E. Compare Values - innerHTML <-> Anchor Link: search-manpage.js:332:11
+Array(255) [ "--abstract-unix-socket <-> --abstract-unix-socket", "--alt-svc <-> --alt-svc", "--anyauth <-> --anyauth", "-a <-> -a", "--aws-sigv4 <-> --aws-sigv4", "--basic <-> --basic", "--ca-native <-> --ca-native", "--cacert <-> --cacert", "--capath <-> --capath", "-E <-> -E", … ]
+search-manpage.js:333:11
+
+search-manpage.js:254:15
+****************************FINISHED TEST****************************** search-manpage.js:255:15
+*********************************************************************** search-manpage.js:256:15
