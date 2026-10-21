@@ -29,6 +29,7 @@
  }
  /* Show checkbox .dropdown when hovered, and when checkbox is checked. */
  div#opt-dropdown.dropdown:hover .pinoptions,
+ div#opt-dropdown.dropdown:focus-within:not(:has(:focus:not(:focus-visible))) .pinoptions,
  div#opt-dropdown.dropdown > input.pinoptions:checked,
  div#opt-dropdown.dropdown > input.pinoptions:checked + label.pinoptions {
      display: initial;
@@ -56,6 +57,7 @@
  }
  /* Make .dropdown-content 95% of viewport height and scrollable. */
  div#opt-dropdown.dropdown:hover div.dropdown-content,
+ div#opt-dropdown.dropdown:focus-within:not(:has(:focus:not(:focus-visible))) div.dropdown-content,
  input.pinoptions:checked + label.pinoptions + div.dropdown-content {
      overflow-y: scroll;
      max-height: 90vh; /* ensure browser shows bottom portion */
@@ -80,6 +82,38 @@
      background-position: 50% 40%;
      color: white;
  }
+ /* Stay open while typing in the search box or moving through the menu by keyboard.
+    Focus from a mouse click does not match :focus-visible, so clicking an option
+    still closes the menu when the mouse leaves. */
+ div#opt-dropdown.dropdown:focus-within:not(:has(:focus:not(:focus-visible))) div.dropdown-content {
+     display: block;
+ }
+ /* Search box, only shown when JavaScript is available. Colors follow the dropdown links. */
+ div#opt-dropdown input#optsearch {
+     box-sizing: border-box;
+     width: 90%;
+     margin: 6px 0;
+     padding: 4px 6px;
+     font: inherit;
+     font-size: 12pt;
+     color: #093754;
+     background-color: white;
+     border: 1px solid #093754;
+     border-radius: 2px;
+ }
+ div#opt-dropdown input#optsearch:focus-visible {
+     outline: 3px solid #093754;
+     outline-offset: -3px;
+ }
+ div#opt-dropdown p#optsearch-none {
+     margin: 6px;
+     font-size: 12pt;
+     color: #093754;
+ }
+ /* Hide filtered out options. Needed since curl.css sets display: block on dropdown links. */
+ div#opt-dropdown [hidden] {
+     display: none;
+ }
  @media (prefers-color-scheme: dark) {
    div#opt-dropdown.dropdown {
      color: #222;
@@ -87,13 +121,27 @@
    div#opt-dropdown.dropdown div.dropdown-content:after {
      color: #222;
    }
+   div#opt-dropdown input#optsearch {
+     color: #fafafa;
+     background-color: #212121;
+     border-color: #606060;
+   }
+   div#opt-dropdown input#optsearch:focus-visible {
+     outline-color: #0096fa;
+   }
+   div#opt-dropdown p#optsearch-none {
+     color: #fafafa;
+   }
  }
 </style>
+<script src="option-search.js" defer></script>
 <!-- Start option menu. -->
 <div id="opt-dropdown" class="dropdown">
- <div class="dropbtn">Options</div>
+ <div class="dropbtn" tabindex="0">Options</div>
  <input type="checkbox" class="pinoptions" id="pinoptions"> <!-- stay expanded when checked -->
  <label class="pinoptions" for="pinoptions">Keep Expanded</label>
   <div class="dropdown-content">
+   <input type="search" id="optsearch" placeholder="Filter options" aria-label="Filter options" autocomplete="off" hidden>
+   <p id="optsearch-none" hidden>No matching options</p>
    <small style="padding: 5px 0">Bottom right handle resizes.</small>
       <hr> <!-- indicator for start of list that is parsed from template generated in makefile -->
