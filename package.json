@@ -1,0 +1,14 @@
+{
+  "name": "curl-manpage-demo",
+  "private": true,
+  "description": "Preview and tests for a search box in the option menu of curl's man page",
+  "type": "module",
+  "scripts": {
+    "serve": "node scripts/serve.mjs",
+    "test": "playwright test",
+    "record": "node scripts/record-demo.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
+  }
+}
