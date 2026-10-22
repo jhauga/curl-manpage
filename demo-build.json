@@ -1,0 +1,11 @@
+{
+  "builtAt": "2026-10-22",
+  "curl": { "version": "8.23.1-DEV", "commit": "b5ca96a441", "latestRelease": "8.23.0" },
+  "curlWww": { "base": "00577b2e" },
+  "roffit": "0.18",
+  "options": 278,
+  "csp": {
+    "page": "upgrade-insecure-requests; default-src 'none'; base-uri 'none'; script-src 'self'; img-src 'self'; style-src 'unsafe-inline' 'self'; form-action 'self'; frame-ancestors 'none'; require-trusted-types-for 'script';",
+    "default": "upgrade-insecure-requests; default-src 'none'; base-uri 'none'; img-src 'self'; style-src 'unsafe-inline' 'self'; form-action 'self'; frame-ancestors 'none'; require-trusted-types-for 'script';"
+  }
+}
