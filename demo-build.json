@@ -1,7 +1,7 @@
 {
-  "builtAt": "2026-10-22",
-  "curl": { "version": "8.23.1-DEV", "commit": "b5ca96a441", "latestRelease": "8.23.0" },
-  "curlWww": { "base": "00577b2e" },
+  "builtAt": "2026-10-26",
+  "curl": { "version": "8.23.1-DEV", "commit": "1f506cdb65", "latestRelease": "8.23.0" },
+  "curlWww": { "base": "8ca60a7a" },
   "roffit": "0.18",
   "options": 278,
   "csp": {

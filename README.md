@@ -43,11 +43,11 @@ The preview is the page curl-www builds, with the proposal applied. It is not ed
 
 | Part | Version |
 | --- | --- |
-| curl | 8.23.1-DEV ([b5ca96a441](https://github.com/curl/curl/commit/b5ca96a441)), after the 8.23.0 release |
-| curl-www | [00577b2e](https://github.com/curl/curl-www/commit/00577b2e) |
+| curl | 8.23.1-DEV ([1f506cdb65](https://github.com/curl/curl/commit/1f506cdb65)), after the 8.23.0 release |
+| curl-www | [8ca60a7a](https://github.com/curl/curl-www/commit/8ca60a7a) |
 | roffit | 0.18 |
 | Options in the menu | 278 |
-| Built | 2026-10-22 |
+| Built | 2026-10-26 |
 
 [demo-build.json](demo-build.json) holds the same values.
 
@@ -109,7 +109,7 @@ BASE_URL=https://jhauga.github.io/curl-manpage/ npx playwright test
 
 ## Test Results
 
-Built from curl 8.23.1-DEV and curl-www `00577b2e`, run on 2026-10-22 with Playwright 1.64.1:
+Built from curl 8.23.1-DEV and curl-www `8ca60a7a`, run on 2026-10-26 with Playwright 1.64.1:
 
 | Browser engine | Version | Result |
 | --- | --- | --- |
