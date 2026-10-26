@@ -137,7 +137,8 @@ the page:
   mockup is kept at the tag
   [demo-2023-sidebar](https://github.com/jhauga/curl-manpage/tree/demo-2023-sidebar).
 - **2026:** this proposal adds the search box to that dropdown, without changing how the menu itself
-  works.
+  works. It was put to the curl maintainers in
+  [curl/curl-www#668](https://github.com/curl/curl-www/issues/668).
 
 ## License
 
