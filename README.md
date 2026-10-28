@@ -43,11 +43,11 @@ The preview is the page curl-www builds, with the proposal applied. It is not ed
 
 | Part | Version |
 | --- | --- |
-| curl | 8.23.1-DEV ([1f506cdb65](https://github.com/curl/curl/commit/1f506cdb65)), after the 8.23.0 release |
+| curl | 8.23.1-DEV ([56ff7e919f](https://github.com/curl/curl/commit/56ff7e919f)), after the 8.23.0 release |
 | curl-www | [8ca60a7a](https://github.com/curl/curl-www/commit/8ca60a7a) |
 | roffit | 0.18 |
 | Options in the menu | 278 |
-| Built | 2026-10-26 |
+| Built | 2026-10-28 |
 
 [demo-build.json](demo-build.json) holds the same values.
 
@@ -63,6 +63,7 @@ The preview is the page curl-www builds, with the proposal applied. It is not ed
 | `scripts/serve.mjs` | Serves the repository locally for the tests. |
 | `scripts/record-demo.mjs` | Records `example-video.gif`. |
 | `test/` | Browser tests. |
+| `demo/user-config.js` | A personal convenience, not part of the proposal. It only runs when the preview is opened with `?user-config=true`. |
 
 ## Rebuilding for a New curl Release
 
@@ -109,13 +110,13 @@ BASE_URL=https://jhauga.github.io/curl-manpage/ npx playwright test
 
 ## Test Results
 
-Built from curl 8.23.1-DEV and curl-www `8ca60a7a`, run on 2026-10-26 with Playwright 1.64.1:
+Built from curl 8.23.1-DEV and curl-www `8ca60a7a`, run on 2026-10-28 with Playwright 1.64.1:
 
 | Browser engine | Version | Result |
 | --- | --- | --- |
-| Chromium | 156 | 14 of 14 passed |
-| Firefox | 157 | 14 of 14 passed |
-| WebKit | 27.2 | 14 of 14 passed |
+| Chromium | 156 | 16 of 16 passed |
+| Firefox | 157 | 16 of 16 passed |
+| WebKit | 27.2 | 16 of 16 passed |
 
 The tests serve the page with the Content-Security-Policy curl.se would send for it, and check that
 the page:

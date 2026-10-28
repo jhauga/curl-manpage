@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-26",
-  "curl": { "version": "8.23.1-DEV", "commit": "1f506cdb65", "latestRelease": "8.23.0" },
+  "builtAt": "2026-10-28",
+  "curl": { "version": "8.23.1-DEV", "commit": "56ff7e919f", "latestRelease": "8.23.0" },
   "curlWww": { "base": "8ca60a7a" },
   "roffit": "0.18",
   "options": 278,

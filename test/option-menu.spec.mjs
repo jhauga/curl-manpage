@@ -77,6 +77,27 @@ test("loads without errors and only from its own origin", async ({ page, baseURL
   expect([...origins]).toEqual([new URL(baseURL).origin]);
 });
 
+test("?user-config=true opens the preview with the menu kept expanded", async ({ page }) => {
+  await page.goto("./?user-config=true");
+  await expect(page.locator("#pinoptions")).toBeChecked();
+  await expect(menuContent(page)).toBeVisible();
+  await expect(page.locator("#optsearch")).toBeVisible();
+  // the menu is fixed, so it stays in view further down the page
+  await page.evaluate(() => window.scrollTo(0, 3000));
+  await page.mouse.move(900, 700);
+  await expect(menuContent(page)).toBeVisible();
+  await expect(page.locator("#optsearch")).toBeInViewport();
+});
+
+test("any other URL opens the preview the way curl.se does", async ({ page }) => {
+  for (const url of ["./", "./?user-config=false", "./?user-config=true&x=1"]) {
+    await page.goto(url);
+    await page.mouse.move(900, 700);
+    await expect(page.locator("#pinoptions"), url).not.toBeChecked();
+    await expect(menuContent(page), url).toBeHidden();
+  }
+});
+
 test("lists every option", async ({ page }) => {
   await load(page);
   const { options } = await build(page);

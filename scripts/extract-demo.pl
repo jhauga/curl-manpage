@@ -91,6 +91,12 @@ $html =~ s{(\bsrc=")([^"]*)(")}{$1 . subresource($2) . $3}ge;
 $html =~ s{(url\((["']))([^"']*)(\2\))}{$1 . subresource($3) . $4}ge;
 # Links to other pages.
 $html =~ s{(<a\b[^>]*\bhref=")([^"]*)(")}{$1 . resolve($2) . $3}ge;
+# demo/user-config.js, a personal convenience that is not part of the
+# proposal. Added after the rewrites, as it is not a curl-www file.
+die "no Keep Expanded checkbox (#pinoptions) in $page\n"
+    unless $html =~ m{<input\b[^>]*\bid="pinoptions"};
+$html =~ s{</head>}{<script src="demo/user-config.js" defer></script>\n</head>}i
+    or die "no </head> in $page\n";
 
 # Nothing may still load from the site root or from curl.se.
 my @left;
